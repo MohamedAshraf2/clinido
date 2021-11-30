@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "994719032217",
+    "project_id": "fir-auth-d2192",
+    "storage_bucket": "fir-auth-d2192.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994719032217:android:438d295460990a1d352908",
+        "android_client_info": {
+          "package_name": "com.example.clinido"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994719032217-o4qhevm5npdnbrue7aanh7cl5g9kssfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxEAMSXkk3j9P4a2364iVEDccRCgFwoLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994719032217-o4qhevm5npdnbrue7aanh7cl5g9kssfj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
