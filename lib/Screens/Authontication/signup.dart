@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class Login extends StatefulWidget {
+class Signup extends StatefulWidget {
   final Function toggelScreen;
 
-  const Login({Key key, this.toggelScreen}) : super(key: key);
+  const Signup({Key key, this.toggelScreen}) : super(key: key);
   @override
-  _LoginState createState() => _LoginState();
+  _SignupState createState() => _SignupState();
 }
 
-class _LoginState extends State<Login> {
+class _SignupState extends State<Signup> {
   TextEditingController _emailController;
   TextEditingController _passwordController;
   final _formKey = GlobalKey<FormState>();
@@ -47,14 +48,14 @@ class _LoginState extends State<Login> {
                     height: 60,
                   ),
                   Text(
-                    "Wellcom Back :)",
+                    "Wellcom :)",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
-                    "Sign in to Containe",
+                    "Create account to Containe",
                     style: TextStyle(color: Colors.grey, fontSize: 14),
                   ),
                   SizedBox(
@@ -101,7 +102,7 @@ class _LoginState extends State<Login> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     child: Text(
-                      "Login",
+                      "Signup",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
@@ -112,13 +113,13 @@ class _LoginState extends State<Login> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Don't have an account?"),
+                      Text("Already have an account?"),
                       SizedBox(
                         width: 5,
                       ),
                       TextButton(
                           onPressed: () => widget.toggelScreen(),
-                          child: Text("Rgister"))
+                          child: Text("Login"))
                     ],
                   )
                 ],

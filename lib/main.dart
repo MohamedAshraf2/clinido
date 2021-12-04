@@ -1,6 +1,6 @@
+import 'package:clinido/Screens/Authontication/authentication.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
 import 'Screens/Authontication/login.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           } else if (snapshoot.hasData) {
             return MaterialApp(
               theme: ThemeData(primarySwatch: Colors.lightBlue),
-              home: Login(),
+              home: Authentication(),
             );
           } else {
             return Loading();
