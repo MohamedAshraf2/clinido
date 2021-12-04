@@ -1,5 +1,5 @@
-import 'package:clinido/Screens/Authontication/login.dart';
-import 'package:clinido/Screens/Authontication/signup.dart';
+import 'package:clinido/screens/authontication/login.dart';
+import 'package:clinido/screens/authontication/signup.dart';
 import 'package:flutter/material.dart';
 
 class Authentication extends StatefulWidget {

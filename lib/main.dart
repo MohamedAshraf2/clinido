@@ -1,7 +1,8 @@
-import 'package:clinido/Screens/Authontication/authentication.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'Screens/Authontication/login.dart';
+import 'package:firebase_core/firebase_core.dart';
+// import 'package:clinido/screens/authontication/authentication.dart';
+// import 'screens/authontication/login.dart';
+import 'package:clinido/screens/home_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,7 +11,12 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _init = Firebase.initializeApp();
+    return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.lightBlue),
+      home: HomeScreen(),
+      debugShowCheckedModeBanner: false,
+    );
+    /* final _init = Firebase.initializeApp();
     return FutureBuilder(
         future: _init,
         builder: (context, snapshoot) {
@@ -24,7 +30,7 @@ class MyApp extends StatelessWidget {
           } else {
             return Loading();
           }
-        });
+        }); */
   }
 }
 
