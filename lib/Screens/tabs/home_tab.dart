@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:clinido/models/doctor.dart';
 import 'package:clinido/screens/specialities_screen.dart';
+import 'package:clinido/widgets/doctor_card.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({Key key}) : super(key: key);
@@ -10,6 +12,15 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
+  List<Doctor> doctors = [
+    Doctor(
+      firstName: 'KShfrshjiadw',
+    ),
+    Doctor(
+      firstName: 'KShfrshjiadw',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +28,7 @@ class _HomeTabState extends State<HomeTab> {
       child: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(top: 8, bottom: 12),
+            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -51,7 +62,7 @@ class _HomeTabState extends State<HomeTab> {
                   margin: EdgeInsets.symmetric(horizontal: 32),
                   child: Material(
                     borderRadius: BorderRadius.circular(30),
-                    elevation: 3,
+                    elevation: 4,
                     child: CircleAvatar(
                       backgroundColor: Colors.lightBlueAccent,
                       child: Icon(
@@ -76,7 +87,10 @@ class _HomeTabState extends State<HomeTab> {
             ),
             child: InkWell(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => SpecialitiesScreen()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => SpecialitiesScreen(
+                          doctos: doctors,
+                        )));
               },
               child: Row(
                 children: [
@@ -84,7 +98,10 @@ class _HomeTabState extends State<HomeTab> {
                     width: 24,
                     height: 24,
                     margin: EdgeInsets.symmetric(horizontal: 8),
-                    child: Icon(Icons.search),
+                    child: Icon(
+                      Icons.search,
+                      color: Colors.lightBlueAccent,
+                    ),
                   ),
                   Text(
                     'Book an appointment in Clinic',
@@ -96,35 +113,46 @@ class _HomeTabState extends State<HomeTab> {
               ),
             ),
           ),
-          Divider(
-            thickness: 1.25,
-            color: Colors.grey,
-          ),
-          Expanded(
-            child: Center(
-              child: CarouselSlider(
-                options: CarouselOptions(
-                  height: 400,
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 2),
-                ),
-                items: [1, 2, 3, 4, 5].map((i) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: EdgeInsets.symmetric(horizontal: 5.0),
-                          decoration: BoxDecoration(color: Colors.amber),
-                          child: Text(
-                            'text $i',
-                            style: TextStyle(fontSize: 16.0),
-                          ));
-                    },
-                  );
-                }).toList(),
-              ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+            child: Divider(
+              thickness: 1.25,
+              color: Colors.grey[400],
             ),
-          )
+          ),
+          // Expanded(
+          //   child: Center(
+          //     child: CarouselSlider(
+          //       options: CarouselOptions(
+          //         height: 300,
+          //         autoPlay: true,
+          //         autoPlayInterval: Duration(seconds: 3),
+          //       ),
+          //       items: [1, 2, 3, 4, 5].map((i) {
+          //         return Builder(
+          //           builder: (BuildContext context) {
+          //             return Container(
+          //                 width: MediaQuery.of(context).size.width,
+          //                 margin: EdgeInsets.symmetric(horizontal: 5.0),
+          //                 decoration: BoxDecoration(
+          //                     color: Colors.lightBlueAccent,
+          //                     borderRadius: BorderRadius.circular(10)),
+          //                 child: Text(
+          //                   'text $i',
+          //                   style: TextStyle(fontSize: 16.0),
+          //                 ));
+          //           },
+          //         );
+          //       }).toList(),
+          //     ),
+          //   ),
+          // )
+
+          /* Container(
+            width: 350,
+            margin: EdgeInsets.only(top: 30),
+            child: DoctorCard(),
+          ), */
         ],
       ),
     );

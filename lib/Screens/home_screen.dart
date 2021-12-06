@@ -24,9 +24,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {},
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Icon(Icons.menu),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            );
+          },
         ),
         elevation: 0,
         actions: [
@@ -39,6 +43,62 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           )
         ],
+      ),
+      drawer: Drawer(
+        child: Container(
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 50, bottom: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                        width: 60,
+                        height: 60,
+                        child: CircleAvatar(
+                          child: Icon(
+                            Icons.person,
+                            size: 40,
+                            color: Colors.grey[600],
+                          ),
+                        )),
+                    Container(
+                        width: 40,
+                        height: 40,
+                        child: CircleAvatar(
+                          child: Icon(
+                            Icons.edit,
+                            color: Colors.grey[600],
+                          ),
+                        ))
+                  ],
+                ),
+              ),
+              Container(
+                child: Column(
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Mohammed Ashraf',
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    ),
+                    Text('+01014082517')
+                  ],
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                child: Divider(
+                  thickness: 1.25,
+                  color: Colors.grey[400],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
       body: _selectedIndex == 0
           ? HomeTab()
