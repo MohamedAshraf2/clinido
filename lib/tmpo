@@ -1,1 +1,129 @@
-fraaag : [{"type":"added","payload":{"_firestore":{"_delegate":{"app":{"_isDeleted":false,"_options":{"apiKey":"AIzaSyDxtLeqwR3AMlQYM6zk7Uz4e8_Dk0MZWoI","authDomain":"clinido-ce15d.firebaseapp.com","projectId":"clinido-ce15d","storageBucket":"clinido-ce15d.appspot.com","messagingSenderId":"584753027934","appId":"1:584753027934:web:719e525a3580d8fbad8dcf"},"_config":{"name":"[DEFAULT]","automaticDataCollectionEnabled":false},"_name":"[DEFAULT]","_automaticDataCollectionEnabled":false,"_container":{"name":"[DEFAULT]","providers":{}}},"databaseId":{"projectId":"clinido-ce15d","database":"(default)"},"settings":{"host":"firestore.googleapis.com","ssl":true,"ignoreUndefinedProperties":false,"cacheSizeBytes":41943040,"experimentalForceLongPolling":false,"experimentalAutoDetectLongPolling":false,"useFetchStreams":true}},"_persistenceProvider":{},"INTERNAL":{},"_appCompat":{"name":"[DEFAULT]","automaticDataCollectionEnabled":false,"options":{"apiKey":"AIzaSyDxtLeqwR3AMlQYM6zk7Uz4e8_Dk0MZWoI","authDomain":"clinido-ce15d.firebaseapp.com","projectId":"clinido-ce15d","storageBucket":"clinido-ce15d.appspot.com","messagingSenderId":"584753027934","appId":"1:584753027934:web:719e525a3580d8fbad8dcf"}}},"_delegate":{"type":"added","doc":{"_firestore":{"app":{"_isDeleted":false,"_options":{"apiKey":"AIzaSyDxtLeqwR3AMlQYM6zk7Uz4e8_Dk0MZWoI","authDomain":"clinido-ce15d.firebaseapp.com","projectId":"clinido-ce15d","storageBucket":"clinido-ce15d.appspot.com","messagingSenderId":"584753027934","appId":"1:584753027934:web:719e525a3580d8fbad8dcf"},"_config":{"name":"[DEFAULT]","automaticDataCollectionEnabled":false},"_name":"[DEFAULT]","_automaticDataCollectionEnabled":false,"_container":{"name":"[DEFAULT]","providers":{}}},"databaseId":{"projectId":"clinido-ce15d","database":"(default)"},"settings":{"host":"firestore.googleapis.com","ssl":true,"ignoreUndefinedProperties":false,"cacheSizeBytes":41943040,"experimentalForceLongPolling":false,"experimentalAutoDetectLongPolling":false,"useFetchStreams":true}},"_userDataWriter":{"firestore":{"_delegate":{"app":{"_isDeleted":false,"_options":{"apiKey":"AIzaSyDxtLeqwR3AMlQYM6zk7Uz4e8_Dk0MZWoI","authDomain":"clinido-ce15d.firebaseapp.com","projectId":"clinido-ce15d","storageBucket":"clinido-ce15d.appspot.com","messagingSenderId":"584753027934","appId":"1:584753027934:web:719e525a3580d8fbad8dcf"},"_config":{"name":"[DEFAULT]","automaticDataCollectionEnabled":false},"_name":"[DEFAULT]","_automaticDataCollectionEnabled":false,"_container":{"name":"[DEFAULT]","providers":{}}},"databaseId":{"projectId":"clinido-ce15d","database":"(default)"},"settings":{"host":"firestore.googleapis.com","ssl":true,"ignoreUndefinedProperties":false,"cacheSizeBytes":41943040,"experimentalForceLongPolling":false,"experimentalAutoDetectLongPolling":false,"useFetchStreams":true}},"_persistenceProvider":{},"INTERNAL":{},"_appCompat":{"name":"[DEFAULT]","automaticDataCollectionEnabled":false,"options":{"apiKey":"AIzaSyDxtLeqwR3AMlQYM6zk7Uz4e8_Dk0MZWoI","authDomain":"clinido-ce15d.firebaseapp.com","projectId":"clinido-ce15d","storageBucket":"clinido-ce15d.appspot.com","messagingSenderId":"584753027934","appId":"1:584753027934:web:719e525a3580d8fbad8dcf"}}}},"_key":{"path":{"segments":["projects","clinido-ce15d","databases","(default)","documents","Doctor","GIkPmBoKqR4CJwhwf5he"],"offset":5,"len":2}},"_document":{"key":{"path":{"segments":["projects","clinido-ce15d","databases","(default)","documents","Doctor","GIkPmBoKqR4CJwhwf5he"],"offset":5,"len":2}},"documentType":1,"version":{"timestamp":{"seconds":1637826856,"nanoseconds":3624000}},"data":{"value":{"mapValue":{"fields":{"drArea":{"stringValue":"dokki"},"lastName":{"stringValue":"Khaled"},"drCategory":{"stringValue":"Audiology"},"mobile":{"stringValue":"0123456"},"firstName":{"stringValue":"Ibrahim"},"drCity":{"stringValue":"Cairo"}}}}},"documentState":0},"_converter":null,"_firestoreImpl":{"app":{"_isDeleted":false,"_options":{"apiKey":"AIzaSyDxtLeqwR3AMlQYM6zk7Uz4e8_Dk0MZWoI","authDomain":"clinido-ce15d.firebaseapp.com","projectId":"clinido-ce15d","storageBucket":"clinido-ce15d.appspot.com","messagingSenderId":"584753027934","appId":"1:584753027934:web:719e525a3580d8fbad8dcf"},"_config":{"name":"[DEFAULT]","automaticDataCollectionEnabled":false},"_name":"[DEFAULT]","_automaticDataCollectionEnabled":false,"_container":{"name":"[DEFAULT]","providers":{}}},"databaseId":{"projectId":"clinido-ce15d","database":"(default)"},"settings":{"host":"firestore.googleapis.com","ssl":true,"ignoreUndefinedProperties":false,"cacheSizeBytes":41943040,"experimentalForceLongPolling":false,"experimentalAutoDetectLongPolling":false,"useFetchStreams":true}},"metadata":{"hasPendingWrites":false,"fromCache":false}},"oldIndex":-1,"newIndex":0}}},{"type":"added","payload":{"_firestore":{"_delegate":{"app":{"_isDeleted":false,"_options":{"apiKey":"AIzaSyDxtLeqwR3AMlQYM6zk7Uz4e8_Dk0MZWoI","authDomain":"clinido-ce15d.firebaseapp.com","projectId":"clinido-ce15d","storageBucket":"clinido-ce15d
+
+0:
+drArea: "dokki"
+drCategory: "Audiology"
+drCity: "Cairo"
+firstName: "Ibrahim"
+id: "GIkPmBoKqR4CJwhwf5he"
+lastName: "Khaled"
+mobile: "0123456"
+[[Prototype]]: Object
+1:
+drArea: "dokki"
+drCategory: "Family medicine"
+drCity: "Alexandria"
+firstName: "Hafsa"
+id: "HNzaUhWDHbveIPsujIyj"
+lastName: "Ahmed"
+mobile: "0200"
+[[Prototype]]: Object
+2:
+drArea: "dokki"
+drCategory: "Andrology and Male Infertility"
+drCity: "El Ismailia"
+firstName: "Hafsa"
+id: "MqDWf1bRmHMcMfY8k4nm"
+lastName: "Ali"
+mobile: "011299"
+[[Prototype]]: Object
+3:
+drArea: "dokki"
+drCategory: "Gynaecology and Infertility"
+drCity: " Sharm El Sheikh"
+firstName: "Omar"
+id: "OMaQvG2W2QVV6JF4Uarh"
+lastName: "Emad"
+mobile: "0123456"
+[[Prototype]]: Object
+4:
+drArea: "dokki"
+drCategory: "Dentistry (Teeth)"
+drCity: "El Sharqia"
+firstName: "Hady"
+id: "OoM1NXQHKFN3hkqLY4GS"
+lastName: "Hesham"
+mobile: "019"
+[[Prototype]]: Object
+5:
+drArea: "dokki"
+drCategory: "Choose Category"
+drCity: "Alexandria"
+firstName: "Abbot"
+id: "QFRU0ZPxbTLNpQS3FsV5"
+lastName: "Cook"
+mobile: "+1 (767) 826-1304"
+[[Prototype]]: Object
+6:
+drArea: "dokki"
+drCategory: "Dermatology (Skin)"
+drCity: "Cairo"
+firstName: "Ali"
+id: "QehCPXUxIN3v1jex5cTk"
+lastName: "Eslam"
+mobile: "0123456"
+[[Prototype]]: Object
+7:
+drArea: "dokki"
+drCategory: "Diabetes and Endocrinology"
+drCity: " Port Said"
+firstName: "Wayne"
+id: "RWWwKOWhlB5Gbxx0bNON"
+lastName: "Reese"
+mobile: "+1 (857) 991-6497"
+[[Prototype]]: Object
+8:
+drArea: "dokki"
+drCategory: "General Surgery"
+drCity: "Luxor"
+firstName: "Dennis"
+id: "XvktI1WcFHHYlw5PWthc"
+lastName: "Harmon"
+mobile: "+1 (517) 614-4154"
+[[Prototype]]: Object
+9:
+drArea: "dokki"
+drCategory: "Andrology and Male Infertility"
+drCity: "Menoufia"
+firstName: "Mohaned"
+id: "iFxgXxPgwfe1uH0e2zAc"
+lastName: "Honda"
+mobile: "013"
+[[Prototype]]: Object
+10:
+drArea: "dokki"
+drCategory: "Cardiology and Vascular Disease (Heart)"
+drCity: "El Ismailia"
+firstName: "Mosallem"
+id: "ixedHHcVuP91SWUmfvMC"
+lastName: "Ahmed"
+mobile: "019"
+[[Prototype]]: Object
+11:
+drArea: "dokki"
+drCategory: "Cardiology and Thorcic Surgery (Heart / Chest)"
+drCity: "Assuit"
+firstName: "Mohammed "
+id: "olNSXZzL14kxddMfz8mD"
+lastName: "Ashraf"
+mobile: "011"
+[[Prototype]]: Object
+12:
+drArea: "dokki"
+drCategory: "Gynaecology and Infertility"
+drCity: "El Dakahlia"
+firstName: "Sydnee"
+id: "u5IaiFojrkkHxBS4JiP4"
+lastName: "Meadows"
+mobile: "+1 (703) 865-2923"
+[[Prototype]]: Object
+13:
+drArea: "dokki"
+drCategory: "Andrology and Male Infertility"
+drCity: "Luxor"
+firstName: "Mohamed"
+id: "xDauLl3tcoF8ikjDP7bb"
+lastName: "Farag"
+mobile: "0123456"
+[[Prototype]]: Object
+length: 14
+[[Prototype]]: Array(0)
