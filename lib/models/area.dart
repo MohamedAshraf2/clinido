@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Area {
-  final String name;
-  final String id;
+  String id;
+  String name;
 
-  Area({this.name, this.id});
+  Area({@required this.name, @required this.id});
+
+  Area.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    id = json['id'];
+  }
 }
