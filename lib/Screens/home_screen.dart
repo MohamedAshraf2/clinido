@@ -1,7 +1,11 @@
+import 'package:clinido/models/doctor.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:clinido/screens/tabs/home_tab.dart';
 import 'package:clinido/screens/tabs/my_bookings_tab.dart';
 import 'package:clinido/screens/tabs/notifications_tab.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -12,6 +16,32 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  final _auth = FirebaseAuth.instance;
+  final store = FirebaseFirestore.instance;
+
+  String x = '';
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() async {
+    // _auth.currentUser.
+    try {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(_auth.currentUser.uid)
+          .get()
+          .then((value) {
+        setState(() {
+          x = value.data()['displayName'];
+        });
+      }).catchError((e) {
+        print(e);
+      });
+    } catch (e) {}
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -80,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Mohammed Ashraf',
+                      '$x',
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),

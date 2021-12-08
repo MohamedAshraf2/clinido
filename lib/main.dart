@@ -1,36 +1,64 @@
+import 'package:clinido/screens/authontication/login_screen.dart';
+import 'package:clinido/screens/authontication/registration_screen.dart';
+import 'package:clinido/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-// import 'package:clinido/screens/authontication/authentication.dart';
-// import 'screens/authontication/login.dart';
+
 import 'package:clinido/screens/home_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool _initialized = false;
+  bool _error = false;
+
+  void initializeFlutterFire() async {
+    try {
+      // Wait for Firebase to initialize and set `_initialized` state to true
+      await Firebase.initializeApp();
+      setState(() {
+        _initialized = true;
+      });
+    } catch (e) {
+      // Set `_error` state to true if Firebase initialization fails
+      setState(() {
+        _error = true;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    initializeFlutterFire();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.lightBlue),
-      home: HomeScreen(),
+      // home: WelcomeScreen(),
+      home: _error
+          ? ErrorWidget()
+          : _initialized
+              ? WelcomeScreen()
+              : Loading(),
       debugShowCheckedModeBanner: false,
+      initialRoute: WelcomeScreen.id,
+      routes: {
+        WelcomeScreen.id: (context) => WelcomeScreen(),
+        LoginScreen.id: (context) => LoginScreen(),
+        RegistrationScreen.id: (context) => RegistrationScreen(),
+      },
     );
-    /* final _init = Firebase.initializeApp();
-    return FutureBuilder(
-        future: _init,
-        builder: (context, snapshoot) {
-          if (snapshoot.hasError) {
-            return ErrorWidget();
-          } else if (snapshoot.hasData) {
-            return MaterialApp(
-              theme: ThemeData(primarySwatch: Colors.lightBlue),
-              home: Authentication(),
-            );
-          } else {
-            return Loading();
-          }
-        }); */
   }
 }
 

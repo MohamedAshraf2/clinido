@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:clinido/models/doctor.dart';
 
 class DoctorCard extends StatefulWidget {
-  final Doctor doctor;
+  // final Doctor doctor;
+  final Map<String, dynamic> doctor;
   const DoctorCard({Key key, @required this.doctor}) : super(key: key);
 
   @override
@@ -34,9 +35,12 @@ class _DoctorCardState extends State<DoctorCard> {
                         margin: EdgeInsets.only(right: 20),
                         child: Text(
                           // "Dr. Mohammed Ashraf",
-                          "${widget.doctor.firstName} ${widget.doctor.lastName}",
-                          style:
-                              TextStyle(color: Colors.lightBlueAccent, fontWeight: FontWeight.bold, fontSize: 18),
+                          // "${widget.doctor.firstName} ${widget.doctor.lastName}",
+                          "${widget.doctor['firstName']} ${widget.doctor['lastName']}",
+                          style: TextStyle(
+                              color: Colors.lightBlueAccent,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
                         ),
                       ),
                       Container(
@@ -44,7 +48,7 @@ class _DoctorCardState extends State<DoctorCard> {
                         child: Text(
                           // "Consaltent of Allgery and immunology",
                           // widget.doctor.speciality.title,
-                          widget.doctor.drCategory,
+                          widget.doctor['drCategory'],
                           style: TextStyle(
                               // color: Colors.lightBlueAccent,
                               fontWeight: FontWeight.bold,
@@ -63,7 +67,10 @@ class _DoctorCardState extends State<DoctorCard> {
                   margin: EdgeInsets.only(left: 15),
                   child: Text(
                     "First in First Out",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey[600]),
+                    style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[600]),
                   ),
                 ),
                 Container(
@@ -103,7 +110,7 @@ class _DoctorCardState extends State<DoctorCard> {
               child: Text(
                 // 'Heliopless , 12 st boutstrab ghlya 4floor Roxy',
                 // '${widget.doctor.city.name}, ${widget.doctor.city.areas[0].name}',
-                '${widget.doctor.drCity}, ${widget.doctor.drArea}',
+                '${widget.doctor['drCity']}, ${widget.doctor['drArea']}',
               ),
             ),
             Container(
@@ -125,7 +132,8 @@ class _DoctorCardState extends State<DoctorCard> {
                         children: [
                           Text(
                             'Waiting Time',
-                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
                           ),
                           Text('15 Minutes'),
                         ],
@@ -146,7 +154,8 @@ class _DoctorCardState extends State<DoctorCard> {
                         children: [
                           Text(
                             'Fees',
-                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
                           ),
                           Text('400 EGP'),
                         ],
