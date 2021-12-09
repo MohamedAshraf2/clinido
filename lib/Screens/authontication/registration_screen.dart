@@ -18,7 +18,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String email;
   String password;
   String displayName;
-  String age;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

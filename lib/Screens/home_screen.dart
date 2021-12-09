@@ -81,41 +81,23 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 margin: EdgeInsets.only(top: 50, bottom: 20),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                        width: 60,
-                        height: 60,
-                        child: CircleAvatar(
-                          child: Icon(
-                            Icons.person,
-                            size: 40,
-                            color: Colors.grey[600],
-                          ),
-                        )),
-                    Container(
-                        width: 40,
-                        height: 40,
-                        child: CircleAvatar(
-                          child: Icon(
-                            Icons.edit,
-                            color: Colors.grey[600],
-                          ),
-                        ))
+                      child: Text(
+                        'Hello : $x',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ],
                 ),
               ),
               Container(
-                child: Column(
-                  // crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '$x',
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                    ),
-                    Text('+01014082517')
-                  ],
+                child: Container(
+                  child: Column(
+                    children: [Text('+01014082517')],
+                  ),
                 ),
               ),
               Padding(

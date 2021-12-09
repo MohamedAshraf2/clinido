@@ -21,7 +21,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
     controller =
         AnimationController(duration: Duration(seconds: 1), vsync: this);
-
     controller.forward();
     controller.addListener(() {
       setState(() {});

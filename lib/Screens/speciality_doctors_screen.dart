@@ -16,7 +16,7 @@ class SpecialityDoctorsScreen extends StatefulWidget {
 }
 
 class _SpecialityDoctorsScreenState extends State<SpecialityDoctorsScreen> {
-  final List<Map<String, dynamic>> dd = [];
+  final List<Map<String, dynamic>> sellectedCateg = [];
 
   @override
   void initState() {
@@ -28,7 +28,7 @@ class _SpecialityDoctorsScreenState extends State<SpecialityDoctorsScreen> {
     widget.doctors.forEach((doctor) {
       if (doctor['drCategory'] == widget.screenTitle) {
         setState(() {
-          dd.add(doctor);
+          sellectedCateg.add(doctor);
         });
       }
     });
@@ -42,7 +42,7 @@ class _SpecialityDoctorsScreenState extends State<SpecialityDoctorsScreen> {
       ),
       body: DoctorsList(
         // doctors: widget.doctors,
-        doctors: dd,
+        doctors: sellectedCateg,
       ),
     );
   }

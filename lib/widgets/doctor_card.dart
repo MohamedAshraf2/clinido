@@ -1,3 +1,4 @@
+import 'package:clinido/screens/confirm_reservation.dart';
 import 'package:flutter/material.dart';
 import 'package:clinido/models/doctor.dart';
 
@@ -171,7 +172,10 @@ class _DoctorCardState extends State<DoctorCard> {
               height: 50,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(primary: Color(0xff2fc34b)),
-                onPressed: () => {},
+                onPressed: () => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => Confirm(doctor: widget.doctor)))
+                },
                 child: Text(
                   "Book Tomorrow (03:00 PM -06:00PM)",
                   style: TextStyle(color: Colors.white, fontSize: 15),

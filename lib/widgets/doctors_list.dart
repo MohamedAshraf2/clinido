@@ -8,17 +8,23 @@ class DoctorsList extends StatelessWidget {
   const DoctorsList({Key key, @required this.doctors}) : super(key: key);
 
   Widget doctorBuilder(BuildContext context, int index) {
-    return DoctorCard(
-      doctor: doctors[index],
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: DoctorCard(
+        doctor: doctors[index],
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: doctors.length,
-      itemBuilder: (BuildContext context, int index) =>
-          doctorBuilder(context, index),
+    return Container(
+      color: Colors.grey[400],
+      child: ListView.builder(
+        itemCount: doctors.length,
+        itemBuilder: (BuildContext context, int index) =>
+            doctorBuilder(context, index),
+      ),
     );
   }
 }
