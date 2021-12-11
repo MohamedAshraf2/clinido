@@ -3,6 +3,7 @@ import 'authontication/login_screen.dart';
 import 'authontication/registration_screen.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:clinido/widgets/rounded_btn.dart';
+import 'package:clinido/navigation/extract_arguments_screen .dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = "welcome_screen";

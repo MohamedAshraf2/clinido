@@ -9,7 +9,9 @@ import 'package:clinido/screens/specialities_screen.dart';
 import 'package:clinido/widgets/doctor_card.dart';
 
 class HomeTab extends StatefulWidget {
-  const HomeTab({Key key}) : super(key: key);
+  final Map<String, dynamic> doctor;
+
+  const HomeTab({this.doctor});
 
   @override
   _HomeTabState createState() => _HomeTabState();
@@ -296,7 +298,6 @@ class _HomeTabState extends State<HomeTab> {
               color: Colors.grey[400],
             ),
           ),
-
           ElevatedButton(
               // onPressed: () => print('${doctorsss[0].toMap()}'),
               onPressed: () {
@@ -304,34 +305,24 @@ class _HomeTabState extends State<HomeTab> {
                   print(doctor);
                 });
               },
-              child: Text('Doctors data'))
-          // Expanded(
-          //   child: Center(
-          //     child: CarouselSlider(
-          //       options: CarouselOptions(
-          //         height: 300,
-          //         autoPlay: true,
-          //         autoPlayInterval: Duration(seconds: 3),
-          //       ),
-          //       items: [1, 2, 3, 4, 5].map((i) {
-          //         return Builder(
-          //           builder: (BuildContext context) {
-          //             return Container(
-          //                 width: MediaQuery.of(context).size.width,
-          //                 margin: EdgeInsets.symmetric(horizontal: 5.0),
-          //                 decoration: BoxDecoration(
-          //                     color: Colors.lightBlueAccent,
-          //                     borderRadius: BorderRadius.circular(10)),
-          //                 child: Text(
-          //                   'text $i',
-          //                   style: TextStyle(fontSize: 16.0),
-          //                 ));
-          //           },
-          //         );
-          //       }).toList(),
-          //     ),
-          //   ),
-          // )
+              child: Text('Doctors data')),
+          Expanded(
+            child: Center(
+              child: CarouselSlider(
+                options: CarouselOptions(
+                  autoPlay: true,
+                  autoPlayInterval: Duration(seconds: 3),
+                ),
+                items: doctorsss.map((doctor) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return DoctorCard(doctor: widget.doctor);
+                    },
+                  );
+                }).toList(),
+              ),
+            ),
+          )
 
           /* Container(
             width: 350,

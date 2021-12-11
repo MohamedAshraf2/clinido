@@ -4,6 +4,7 @@ import 'package:clinido/models/speciality.dart';
 import 'package:clinido/widgets/specialities_list.dart';
 
 class SpecialitiesScreen extends StatefulWidget {
+  static String id = "specialities_screen";
   // final List<Doctor> doctos;
   final List<Map<String, dynamic>> doctos;
   const SpecialitiesScreen({Key key, @required this.doctos}) : super(key: key);

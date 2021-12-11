@@ -8,7 +8,9 @@ import 'package:clinido/screens/tabs/notifications_tab.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key key}) : super(key: key);
+  static String id = "home_screen";
+  int selectedTabIndex;
+  HomeScreen({Key key, this.selectedTabIndex}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -24,6 +26,10 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     getCurrentUser();
+    setState(() {
+      _selectedIndex =
+          widget.selectedTabIndex != null ? widget.selectedTabIndex : 0;
+    });
   }
 
   void getCurrentUser() async {

@@ -1,17 +1,18 @@
-import 'package:clinido/screens/tabs/my_bookings_tab.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:clinido/screens/home_screen.dart';
 
-class Confirm extends StatefulWidget {
+class ConfirmScreen extends StatefulWidget {
+  static String id = "confirm_screen";
   final Map<String, dynamic> doctor;
-  const Confirm({this.doctor});
+  const ConfirmScreen({this.doctor});
 
   @override
-  _ConfirmState createState() => _ConfirmState();
+  _ConfirmScreenState createState() => _ConfirmScreenState();
 }
 
-class _ConfirmState extends State<Confirm> {
+class _ConfirmScreenState extends State<ConfirmScreen> {
   final _auth = FirebaseAuth.instance;
   CollectionReference booking =
       FirebaseFirestore.instance.collection('Booking');
@@ -53,6 +54,8 @@ class _ConfirmState extends State<Confirm> {
           .then((value) {
         setState(() {
           x = value.data()['displayName'];
+        });
+        setState(() {
           emaill = value.data()['email'];
         });
       }).catchError((e) {
@@ -236,20 +239,47 @@ class _ConfirmState extends State<Confirm> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Color(0xff2fc34b)),
                   onPressed: () => {
-                    booking
-                        .add({
+                    booking.add({
+                      'DoctorCategory': '${widget.doctor['drCategory']}',
+                      'DoctorName':
+                          '${widget.doctor['firstName']} ${widget.doctor['lastName']}',
+                      'email': '$emaill',
+                      'name': '$x',
+                      'phone': '$phonee'
+                    }).then((value) {
+                      FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(_auth.currentUser.uid)
+                          .get()
+                          .then((fu) {
+                        List<dynamic> tb = fu.data()['bookings'];
+                        tb.add({
                           'DoctorCategory': '${widget.doctor['drCategory']}',
                           'DoctorName':
                               '${widget.doctor['firstName']} ${widget.doctor['lastName']}',
                           'email': '$emaill',
                           'name': '$x',
                           'phone': '$phonee'
-                        })
-                        .then((value) =>
-                            Navigator.of(context).push(MaterialPageRoute(
+                        });
+                        FirebaseFirestore.instance
+                            .collection('users')
+                            .doc(_auth.currentUser.uid)
+                            .update({
+                          'bookings': tb,
+                        }).then((value) => Navigator.of(context).popUntil(
+                                (value) =>
+                                    value.settings.name == HomeScreen.id));
+                      });
+                    })
+                        /* Navigator.of(context)
+                            .pushReplacement(MaterialPageRoute(
+                                builder: (_) => HomeScreen(
+                                      selectedTabIndex: 1,
+                                    )))) */
+                        /* Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => MyBookingsTab(
                                       doctor: widget.doctor,
-                                    ))))
+                                    )))) */
                         .catchError((e) => {print('Failld ya 3beet')})
                   },
                   child: Text(

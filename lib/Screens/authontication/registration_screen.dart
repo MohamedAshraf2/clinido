@@ -80,7 +80,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   FirebaseFirestore.instance
                       .collection('users')
                       .doc(userCredential.user.uid)
-                      .set({'displayName': displayName}).then((value) {
+                      .set({'displayName': displayName, 'email': email}).then(
+                          (value) {
                     Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (_) => HomeScreen()));
                   }).catchError((e) {

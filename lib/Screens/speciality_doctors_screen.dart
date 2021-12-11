@@ -3,6 +3,7 @@ import 'package:clinido/models/doctor.dart';
 import 'package:clinido/widgets/doctors_list.dart';
 
 class SpecialityDoctorsScreen extends StatefulWidget {
+  static String id = "speciality_doctors_screen";
   final String screenTitle;
   // final List<Doctor> doctors;
   final List<Map<String, dynamic>> doctors;

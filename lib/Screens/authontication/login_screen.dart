@@ -63,11 +63,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   final user = await _auth.signInWithEmailAndPassword(
                       email: email, password: password);
                   if (user != null) {
-                    Navigator.of(context).pushReplacement(
+                    Navigator.of(context).pushReplacementNamed(HomeScreen.id);
+                    /* Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (_) => HomeScreen(),
                       ),
-                    );
+                    ); */
                   }
                 } catch (e) {
                   print(e);

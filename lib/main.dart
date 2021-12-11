@@ -1,10 +1,13 @@
-import 'package:clinido/screens/authontication/login_screen.dart';
-import 'package:clinido/screens/authontication/registration_screen.dart';
-import 'package:clinido/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:clinido/navigation/extract_arguments_screen .dart';
+import 'package:clinido/screens/welcome_screen.dart';
+import 'package:clinido/screens/authontication/login_screen.dart';
+import 'package:clinido/screens/authontication/registration_screen.dart';
 import 'package:clinido/screens/home_screen.dart';
+import 'package:clinido/screens/specialities_screen.dart';
+import 'package:clinido/screens/speciality_doctors_screen.dart';
+import 'package:clinido/screens/confirm_reservation_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,6 +60,11 @@ class _MyAppState extends State<MyApp> {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
+        HomeScreen.id: (context) => HomeScreen(),
+        SpecialitiesScreen.id: (context) => SpecialitiesScreen(doctos: []),
+        SpecialityDoctorsScreen.id: (context) =>
+            SpecialityDoctorsScreen(doctors: [], screenTitle: ''),
+        ConfirmScreen.id: (context) => ConfirmScreen(),
       },
     );
   }
