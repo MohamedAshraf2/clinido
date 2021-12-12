@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:clinido/widgets/my_booking_tile.dart';
 
 class MyBookingsList extends StatefulWidget {
   final List<dynamic> bookings;
+
   const MyBookingsList({Key key, @required this.bookings}) : super(key: key);
 
   @override
@@ -11,14 +13,19 @@ class MyBookingsList extends StatefulWidget {
 
 class _MyBookingsListState extends State<MyBookingsList> {
   Widget buildBooking(int index) {
-    return MyBookingTile(booking: widget.bookings[index]);
+    return Container(
+        margin: EdgeInsets.all(10),
+        child: MyBookingTile(booking: widget.bookings[index]));
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: widget.bookings.length,
-      itemBuilder: (context, index) => buildBooking(index),
+    return Container(
+      color: Colors.grey[400],
+      child: ListView.builder(
+        itemCount: widget.bookings.length,
+        itemBuilder: (context, index) => buildBooking(index),
+      ),
     );
   }
 }

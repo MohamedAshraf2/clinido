@@ -90,16 +90,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 }).catchError((e) {
                   print('The Error: $e');
                 });
-                /* try {
-                  final newUser = await _auth.createUserWithEmailAndPassword(
-                      email: Email, password: Password);
-                  if (newUser != null) {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => HomeScreen()));
-                  }
-                } catch (e) {
-                  print(e);
-                } */
               },
             ),
           ],

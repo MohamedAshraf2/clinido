@@ -8,9 +8,12 @@ import 'package:clinido/models/speciality.dart';
 import 'package:clinido/screens/specialities_screen.dart';
 import 'package:clinido/widgets/doctor_card.dart';
 
+import '../confirm_reservation_screen.dart';
+
+import 'package:url_launcher/url_launcher.dart';
+
 class HomeTab extends StatefulWidget {
   final Map<String, dynamic> doctor;
-
   const HomeTab({this.doctor});
 
   @override
@@ -32,166 +35,11 @@ class _HomeTabState extends State<HomeTab> {
     }
   }
 
-  // List<Doctor> doctors = [
-  /* Doctor.fromJson({
-      "id": "GIkPmBoKqR4CJwhwf5he",
-      "firstName": "Ibrahim",
-      "lastName": "Khaled",
-      "speciality": {
-        "title": "Audiology",
-        "id": "uieghfjksdb",
-      },
-      "mobile": "0123456",
-      "city": {
-        "id": "jsdkefghsdfhjkbfg",
-        "name": "Cairo",
-        "areas": [
-          {
-            "id": "euifhjksdbg",
-            "name": "dokki",
-          }
-        ]
-      },
-    }),
-    Doctor.fromJson({
-      "id": "GIkPmBoKqR4CJwhwf5he",
-      "firstName": "Ibrahim",
-      "lastName": "Khaled",
-      "speciality": {
-        "title": "Audiology",
-        "id": "uieghfjksdb",
-      },
-      "mobile": "0123456",
-      "city": {
-        "id": "jsdkefghsdfhjkbfg",
-        "name": "Cairo",
-        "areas": [
-          {
-            "id": "euifhjksdbg",
-            "name": "dokki",
-          }
-        ]
-      },
-    }),
-  //   */
-  //   Doctor.fromJson({
-  //     "drArea": "dokki",
-  //     "drCategory": "Family medicine",
-  //     "drCity": "Alexandria",
-  //     "firstName": "Hafsa",
-  //     "id": "HNzaUhWDHbveIPsujIyj",
-  //     "lastName": "Ahmed",
-  //     "mobile": "0200",
-  //   }),
-  //   Doctor.fromJson({
-  //     "drArea": "dokki",
-  //     "drCategory": "Andrology and Male Infertility",
-  //     "drCity": "El Ismailia",
-  //     "firstName": "Hafsa",
-  //     "id": "MqDWf1bRmHMcMfY8k4nm",
-  //     "lastName": "Ali",
-  //     "mobile": "011299",
-  //   }),
-  //   Doctor.fromJson({
-  //     "drArea": "dokki",
-  //     "drCategory": "Gynaecology and Infertility",
-  //     "drCity": " Sharm El Sheikh",
-  //     "firstName": "Omar",
-  //     "id": "OMaQvG2W2QVV6JF4Uarh",
-  //     "lastName": "Emad",
-  //     "mobile": "0123456",
-  //   }),
-  //   Doctor.fromJson({
-  //     "drArea": "dokki",
-  //     "drCategory": "Dentistry (Teeth)",
-  //     "drCity": "El Sharqia",
-  //     "firstName": "Hady",
-  //     "id": "OoM1NXQHKFN3hkqLY4GS",
-  //     "lastName": "Hesham",
-  //     "mobile": "019",
-  //   }),
-  //   Doctor.fromJson({
-  //     "drArea": "dokki",
-  //     "drCategory": "Choose Category",
-  //     "drCity": "Alexandria",
-  //     "firstName": "Abbot",
-  //     "id": "QFRU0ZPxbTLNpQS3FsV5",
-  //     "lastName": "Cook",
-  //     "mobile": "+1 (767) 826-1304",
-  //   }),
-  //   Doctor.fromJson({
-  //     "drArea": "dokki",
-  //     "drCategory": "Dermatology (Skin)",
-  //     "drCity": "Cairo",
-  //     "firstName": "Ali",
-  //     "id": "QehCPXUxIN3v1jex5cTk",
-  //     "lastName": "Eslam",
-  //     "mobile": "0123456",
-  //   }),
-  //   Doctor.fromJson({
-  //     "drArea": "dokki",
-  //     "drCategory": "Diabetes and Endocrinology",
-  //     "drCity": " Port Said",
-  //     "firstName": "Wayne",
-  //     "id": "RWWwKOWhlB5Gbxx0bNON",
-  //     "lastName": "Reese",
-  //     "mobile": "+1 (857) 991-6497",
-  //   }),
-  //   Doctor.fromJson({
-  //     "drArea": "dokki",
-  //     "drCategory": "General Surgery",
-  //     "drCity": "Luxor",
-  //     "firstName": "Dennis",
-  //     "id": "XvktI1WcFHHYlw5PWthc",
-  //     "lastName": "Harmon",
-  //     "mobile": "+1 (517) 614-4154",
-  //   }),
-  //   Doctor.fromJson({
-  //     "drArea": "dokki",
-  //     "drCategory": "Andrology and Male Infertility",
-  //     "drCity": "Menoufia",
-  //     "firstName": "Mohaned",
-  //     "id": "iFxgXxPgwfe1uH0e2zAc",
-  //     "lastName": "Honda",
-  //     "mobile": "013",
-  //   }),
-  //   Doctor.fromJson({
-  //     "drArea": "dokki",
-  //     "drCategory": "Cardiology and Vascular Disease (Heart)",
-  //     "drCity": "El Ismailia",
-  //     "firstName": "Mosallem",
-  //     "id": "ixedHHcVuP91SWUmfvMC",
-  //     "lastName": "Ahmed",
-  //     "mobile": "019",
-  //   }),
-  //   Doctor.fromJson({
-  //     "drArea": "dokki",
-  //     "drCategory": "Cardiology and Thorcic Surgery (Heart / Chest)",
-  //     "drCity": "Assuit",
-  //     "firstName": "Mohammed ",
-  //     "id": "olNSXZzL14kxddMfz8mD",
-  //     "lastName": "Ashraf",
-  //     "mobile": "011",
-  //   }),
-  //   Doctor.fromJson({
-  //     "drArea": "dokki",
-  //     "drCategory": "Gynaecology and Infertility",
-  //     "drCity": "El Dakahlia",
-  //     "firstName": "Sydnee",
-  //     "id": "u5IaiFojrkkHxBS4JiP4",
-  //     "lastName": "Meadows",
-  //     "mobile": "+1 (703) 865-2923",
-  //   }),
-  //   Doctor.fromJson({
-  //     "drArea": "dokki",
-  //     "drCategory": "Andrology and Male Infertility",
-  //     "drCity": "Luxor",
-  //     "firstName": "Mohamed",
-  //     "id": "xDauLl3tcoF8ikjDP7bb",
-  //     "lastName": "Farag",
-  //     "mobile": "0123456",
-  //   }),
-  // ];
+  final _url = 'tel://+20 1014082517';
+
+  void _launchURL() async => await canLaunch(_url)
+      ? await launch(_url)
+      : throw 'Could not launch $_url';
 
   @override
   void initState() {
@@ -236,18 +84,21 @@ class _HomeTabState extends State<HomeTab> {
                     ),
                   ],
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 32),
-                  child: Material(
-                    borderRadius: BorderRadius.circular(30),
-                    elevation: 4,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.lightBlueAccent,
-                      child: Icon(
-                        Icons.phone,
-                        color: Colors.white,
+                GestureDetector(
+                  onTap: () => _launchURL(),
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 32),
+                    child: Material(
+                      borderRadius: BorderRadius.circular(30),
+                      elevation: 4,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.lightBlueAccent,
+                        child: Icon(
+                          Icons.phone,
+                          color: Colors.white,
+                        ),
+                        maxRadius: 24,
                       ),
-                      maxRadius: 24,
                     ),
                   ),
                 ),
@@ -298,29 +149,206 @@ class _HomeTabState extends State<HomeTab> {
               color: Colors.grey[400],
             ),
           ),
-          ElevatedButton(
-              // onPressed: () => print('${doctorsss[0].toMap()}'),
-              onPressed: () {
-                doctorsss.forEach((doctor) {
-                  print(doctor);
-                });
-              },
-              child: Text('Doctors data')),
           Expanded(
-            child: Center(
-              child: CarouselSlider(
-                options: CarouselOptions(
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 3),
-                ),
-                items: doctorsss.map((doctor) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return DoctorCard(doctor: widget.doctor);
-                    },
-                  );
-                }).toList(),
+            child: CarouselSlider(
+              options: CarouselOptions(
+                autoPlay: false,
+                autoPlayInterval: Duration(seconds: 3),
               ),
+              items: doctorsss.map((doctor) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                        child: DoctorCard(
+                      doctor: doctor,
+                    )
+                        // Card(
+                        //   child: Container(
+                        //     child: Column(
+                        //       children: [
+                        //         Row(
+                        //           children: [
+                        //             Container(
+                        //               margin: EdgeInsets.all(10),
+                        //               width: 45,
+                        //               height: 45,
+                        //               child: CircleAvatar(
+                        //                 backgroundImage: AssetImage(
+                        //                     'assets/images/GSCT8252.jpg'),
+                        //                 // backgroundImage: widget.doctor.image,
+                        //               ),
+                        //             ),
+                        //             Container(
+                        //               child: Column(
+                        //                 children: [
+                        //                   Container(
+                        //                     margin: EdgeInsets.only(right: 20),
+                        //                     child: Text(
+                        //                       // "Dr. Mohammed Ashraf",
+                        //                       // "${widget.doctor.firstName} ${widget.doctor.lastName}",
+                        //                       "${doctor['firstName']} ${doctor['lastName']}",
+                        //                       style: TextStyle(
+                        //                           color: Colors.lightBlueAccent,
+                        //                           fontWeight: FontWeight.bold,
+                        //                           fontSize: 18),
+                        //                     ),
+                        //                   ),
+                        //                   Container(
+                        //                     margin: EdgeInsets.only(
+                        //                         left: 10, top: 10),
+                        //                     width: 200,
+                        //                     child: Text(
+                        //                       // "Consaltent of Allgery and immunology",
+                        //                       // widget.doctor.speciality.title,
+                        //                       doctor['drCategory'],
+                        //                       style: TextStyle(
+                        //                           // color: Colors.lightBlueAccent,
+                        //                           fontWeight: FontWeight.bold,
+                        //                           fontSize: 13),
+                        //                     ),
+                        //                   )
+                        //                 ],
+                        //               ),
+                        //             )
+                        //           ],
+                        //         ),
+                        //         Row(
+                        //           mainAxisAlignment:
+                        //               MainAxisAlignment.spaceBetween,
+                        //           children: [
+                        //             Container(
+                        //               margin: EdgeInsets.only(left: 15),
+                        //               child: Text(
+                        //                 "First in First Out",
+                        //                 style: TextStyle(
+                        //                     fontSize: 12,
+                        //                     fontWeight: FontWeight.bold,
+                        //                     color: Colors.grey[600]),
+                        //               ),
+                        //             ),
+                        //             Container(
+                        //               margin: EdgeInsets.only(right: 15),
+                        //               child: Row(
+                        //                 children: [
+                        //                   Icon(
+                        //                     Icons.star,
+                        //                     color: Colors.yellow,
+                        //                   ),
+                        //                   SizedBox(
+                        //                     width: 5,
+                        //                   ),
+                        //                   Text('5.0'),
+                        //                   SizedBox(
+                        //                     width: 20,
+                        //                   ),
+                        //                   Icon(
+                        //                     Icons.remove_red_eye,
+                        //                     color: Colors.grey[600],
+                        //                   ),
+                        //                   SizedBox(
+                        //                     width: 5,
+                        //                   ),
+                        //                   Text('19987')
+                        //                 ],
+                        //               ),
+                        //             )
+                        //           ],
+                        //         ),
+                        //         Container(
+                        //           margin: EdgeInsets.symmetric(vertical: 10),
+                        //           padding: EdgeInsets.only(left: 30, top: 15),
+                        //           height: 40,
+                        //           width: double.infinity,
+                        //           color: Colors.grey[200],
+                        //           child: Text(
+                        //             // 'Heliopless , 12 st boutstrab ghlya 4floor Roxy',
+                        //             // '${widget.doctor.city.name}, ${widget.doctor.city.areas[0].name}',
+                        //             '${doctor['drCity']}, ${doctor['drArea']}',
+                        //           ),
+                        //         ),
+                        //         Container(
+                        //           padding: EdgeInsets.symmetric(vertical: 15),
+                        //           child: Row(
+                        //             mainAxisAlignment:
+                        //                 MainAxisAlignment.spaceAround,
+                        //             children: [
+                        //               Row(
+                        //                 children: [
+                        //                   Icon(
+                        //                     Icons.access_alarm,
+                        //                     size: 50,
+                        //                     color: Colors.lightBlueAccent,
+                        //                   ),
+                        //                   SizedBox(
+                        //                     width: 10,
+                        //                   ),
+                        //                   Column(
+                        //                     children: [
+                        //                       Text(
+                        //                         'Waiting Time',
+                        //                         style: TextStyle(
+                        //                             fontSize: 15,
+                        //                             fontWeight: FontWeight.bold),
+                        //                       ),
+                        //                       Text('15 Minutes'),
+                        //                     ],
+                        //                   ),
+                        //                 ],
+                        //               ),
+                        //               Row(
+                        //                 children: [
+                        //                   Icon(
+                        //                     Icons.attach_money,
+                        //                     size: 50,
+                        //                     color: Colors.lightBlueAccent,
+                        //                   ),
+                        //                   SizedBox(
+                        //                     width: 10,
+                        //                   ),
+                        //                   Column(
+                        //                     children: [
+                        //                       Text(
+                        //                         'Fees',
+                        //                         style: TextStyle(
+                        //                             fontSize: 15,
+                        //                             fontWeight: FontWeight.bold),
+                        //                       ),
+                        //                       Text('400 EGP'),
+                        //                     ],
+                        //                   )
+                        //                 ],
+                        //               ),
+                        //             ],
+                        //           ),
+                        //         ),
+                        //         Container(
+                        //           margin: EdgeInsets.all(20),
+                        //           width: double.infinity,
+                        //           height: 50,
+                        //           child: ElevatedButton(
+                        //             style: ElevatedButton.styleFrom(
+                        //                 primary: Color(0xff2fc34b)),
+                        //             onPressed: () => {
+                        //               Navigator.of(context).push(
+                        //                   MaterialPageRoute(
+                        //                       builder: (_) => ConfirmScreen(
+                        //                           doctor: widget.doctor)))
+                        //             },
+                        //             child: Text(
+                        //               "Book Tomorrow (03:00 PM -06:00PM)",
+                        //               style: TextStyle(
+                        //                   color: Colors.white, fontSize: 15),
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
+                        );
+                  },
+                );
+              }).toList(),
             ),
           )
 

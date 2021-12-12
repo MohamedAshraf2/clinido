@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:clinido/screens/home_screen.dart';
+import 'package:intl/intl.dart';
 
 class ConfirmScreen extends StatefulWidget {
   static String id = "confirm_screen";
@@ -17,7 +18,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
   CollectionReference booking =
       FirebaseFirestore.instance.collection('Booking');
 
-  String x = '';
+  String username = '';
   String emaill = "";
   String phonee = '';
 
@@ -53,7 +54,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
           .get()
           .then((value) {
         setState(() {
-          x = value.data()['displayName'];
+          username = value.data()['displayName'];
         });
         setState(() {
           emaill = value.data()['email'];
@@ -66,6 +67,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String now = DateFormat("yyyy-MM-dd hh:mm:ss").format(DateTime.now());
     return Scaffold(
       appBar: AppBar(
         title: Text('Confirm Your Reservation'),
@@ -192,7 +194,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              '$x',
+                              '$username',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 18),
                             ),
@@ -212,7 +214,6 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                                     width: double.infinity,
                                     height: 50,
                                     child: TextField(
-                                      // onChanged: (value) => validateMobile(value),
                                       onChanged: (val) => {setphone(val)},
                                       keyboardType: TextInputType.phone,
                                       decoration: InputDecoration(
@@ -244,8 +245,8 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                       'DoctorName':
                           '${widget.doctor['firstName']} ${widget.doctor['lastName']}',
                       'email': '$emaill',
-                      'name': '$x',
-                      'phone': '$phonee'
+                      'name': '$username',
+                      'phone': '$phonee',
                     }).then((value) {
                       FirebaseFirestore.instance
                           .collection('users')
@@ -255,11 +256,13 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                         List<dynamic> tb = fu.data()['bookings'];
                         tb.add({
                           'DoctorCategory': '${widget.doctor['drCategory']}',
+                          'DoctorPhone': '${widget.doctor['mobile']}',
                           'DoctorName':
                               '${widget.doctor['firstName']} ${widget.doctor['lastName']}',
                           'email': '$emaill',
-                          'name': '$x',
-                          'phone': '$phonee'
+                          'name': '$username',
+                          'phone': '$phonee',
+                          'resevationTime': '$now'
                         });
                         FirebaseFirestore.instance
                             .collection('users')
@@ -270,17 +273,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                                 (value) =>
                                     value.settings.name == HomeScreen.id));
                       });
-                    })
-                        /* Navigator.of(context)
-                            .pushReplacement(MaterialPageRoute(
-                                builder: (_) => HomeScreen(
-                                      selectedTabIndex: 1,
-                                    )))) */
-                        /* Navigator.of(context).push(MaterialPageRoute(
-                                builder: (_) => MyBookingsTab(
-                                      doctor: widget.doctor,
-                                    )))) */
-                        .catchError((e) => {print('Failld ya 3beet')})
+                    }).catchError((e) => {print('Failld ya 3beet')})
                   },
                   child: Text(
                     "Confirm",
