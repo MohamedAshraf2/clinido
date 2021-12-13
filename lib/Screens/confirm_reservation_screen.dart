@@ -253,7 +253,9 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                           .doc(_auth.currentUser.uid)
                           .get()
                           .then((fu) {
-                        List<dynamic> tb = fu.data()['bookings'];
+                        List<dynamic> tb = fu.data()['bookings'] != null
+                            ? fu.data()['bookings']
+                            : [];
                         tb.add({
                           'DoctorCategory': '${widget.doctor['drCategory']}',
                           'DoctorPhone': '${widget.doctor['mobile']}',

@@ -95,11 +95,11 @@ class _MyBookingTileState extends State<MyBookingTile> {
                     // '${widget.doctor.city.name}, ${widget.doctor.city.areas[0].name}',
                     '${widget.booking['resevationTime']}',
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Colors.green[500]),
-                    onPressed: () {},
-                    child: Text('Booking info'),
-                  ),
+                  // ElevatedButton(
+                  //   style: ElevatedButton.styleFrom(primary: Colors.green[500]),
+                  //   onPressed: () {},
+                  //   child: Text('Booking info'),
+                  // ),
                 ],
               ),
             ),
@@ -118,7 +118,7 @@ class _MyBookingTileState extends State<MyBookingTile> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: Colors.red[900]),
                     onPressed: () {
-                      print(widget.booking);
+                      // print(widget.booking);
                       FirebaseFirestore.instance
                           .collection('users')
                           .doc(FirebaseAuth.instance.currentUser.uid)
