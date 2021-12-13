@@ -90,6 +90,8 @@ class _MyBookingsTabState extends State<MyBookingsTab> {
 
   @override
   Widget build(BuildContext context) {
+    print(
+        'User ID: ${FirebaseAuth.instance.currentUser.uid} From My Bookings Tab');
     return DefaultTabController(
       length: 2,
       child: Scaffold(

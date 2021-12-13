@@ -1,4 +1,8 @@
 import 'package:clinido/models/doctor.dart';
+import 'package:clinido/screens/settings/about_us_screen.dart';
+import 'package:clinido/screens/settings/contact_us_screen.dart';
+import 'package:clinido/screens/settings/privacy_screen.dart';
+import 'package:clinido/screens/settings/terms_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final _auth = FirebaseAuth.instance;
   final store = FirebaseFirestore.instance;
+  final List<Map<String, dynamic>> doctorsss = [];
 
-  String x = '';
+  String username = '';
   @override
   void initState() {
     super.initState();
@@ -30,6 +35,17 @@ class _HomeScreenState extends State<HomeScreen> {
       _selectedIndex =
           widget.selectedTabIndex != null ? widget.selectedTabIndex : 0;
     });
+    getDocrorsdata();
+  }
+
+  getDocrorsdata() async {
+    final _docrorss = await store.collection("Doctor").get();
+    for (var doctor in _docrorss.docs) {
+      Map<String, dynamic> tempDoctor = doctor.data();
+      tempDoctor.addAll({'id': doctor.id});
+      // doctorsss.add(Doctor.fromJson(doctor.data(), doctor.id));
+      doctorsss.add(tempDoctor);
+    }
   }
 
   void getCurrentUser() async {
@@ -41,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
           .get()
           .then((value) {
         setState(() {
-          x = value.data()['displayName'];
+          username = value.data()['displayName'];
         });
       }).catchError((e) {
         print(e);
@@ -57,6 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('User ID: ${FirebaseAuth.instance.currentUser.uid} From Home Screen');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -83,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: Drawer(
         child: Container(
           child: Column(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween
             children: [
               Container(
                 margin: EdgeInsets.only(top: 50, bottom: 20),
@@ -91,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Container(
                       child: Text(
-                        'Hello : $x',
+                        'Hello : $username',
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       ),
@@ -114,12 +132,114 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.grey[400],
                 ),
               ),
+              // Privacy & Polocy
+              GestureDetector(
+                onTap: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => PrivacyScreen())),
+                child: Container(
+                  margin: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.assignment_rounded,
+                        color: Colors.lightBlueAccent,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 15),
+                        child: Text('Privacy & Polocy'),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              // Teerms & Conditions
+              GestureDetector(
+                onTap: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => TermsScreen())),
+                child: Container(
+                  margin: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.privacy_tip,
+                        color: Colors.lightBlueAccent,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 15),
+                        child: Text('Teerms & Conditions'),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              // About Us
+              GestureDetector(
+                onTap: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => AboutUsScreen())),
+                child: Container(
+                  margin: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.info,
+                        color: Colors.lightBlueAccent,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 15),
+                        child: Text('About Us'),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              // Contact Us
+              GestureDetector(
+                onTap: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => ContactUsScreen())),
+                child: Container(
+                  margin: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.phone,
+                        color: Colors.lightBlueAccent,
+                      ),
+                      Container(
+                          margin: EdgeInsets.only(left: 15),
+                          child: Text('Contact Us ')),
+                    ],
+                  ),
+                ),
+              ),
+
+              // Logout
+
+              GestureDetector(
+                onTap: () => {},
+                child: Container(
+                  margin: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.logout,
+                        color: Colors.lightBlueAccent,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 15),
+                        child: Text('Logout'),
+                      )
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
       ),
       body: _selectedIndex == 0
-          ? HomeTab()
+          ? HomeTab(
+              doctors: doctorsss,
+            )
           : _selectedIndex == 1
               ? MyBookingsTab()
               : _selectedIndex == 2
@@ -144,6 +264,19 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.white,
         onTap: _onItemTapped,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print(FirebaseAuth.instance.currentUser.uid);
+          FirebaseFirestore.instance
+              .collection('users')
+              .doc(FirebaseAuth.instance.currentUser.uid)
+              .get()
+              .then((value) {
+            print(value.data());
+          });
+        },
+        child: Icon(Icons.add),
       ),
     );
   }

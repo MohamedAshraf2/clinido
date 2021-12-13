@@ -29,6 +29,8 @@ class MmBbookingTtaTtabState extends State<MyBookingsTabTab> {
 
   @override
   Widget build(BuildContext context) {
+    print(
+        'User ID: ${FirebaseAuth.instance.currentUser.uid} From My Bookings Tab Tab');
     return MyBookingsList(bookings: bookings);
   }
 }

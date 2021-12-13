@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:clinido/widgets/my_booking_tile.dart';
 
@@ -20,6 +21,8 @@ class _MyBookingsListState extends State<MyBookingsList> {
 
   @override
   Widget build(BuildContext context) {
+    print(
+        'User ID: ${FirebaseAuth.instance.currentUser.uid} From My Bookings List');
     return Container(
       color: Colors.grey[400],
       child: ListView.builder(

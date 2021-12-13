@@ -32,6 +32,8 @@ class _MyBookingTileState extends State<MyBookingTile> {
 
   @override
   Widget build(BuildContext context) {
+    print(
+        'User ID: ${FirebaseAuth.instance.currentUser.uid} From My Booking Tile');
     return Card(
       child: Container(
         child: Column(
@@ -115,15 +117,14 @@ class _MyBookingTileState extends State<MyBookingTile> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: Colors.red[900]),
-                    onPressed: () => {
-                      // (i) {
-                      //   FirebaseFirestore.instance
-                      //       .collection('uesrs')
-                      //       .doc(FirebaseAuth.instance.currentUser.uid)
-                      //       .update({
-                      //     'bookings': FieldValue.arrayRemove([bookings[i]])
-                      //   });
-                      // }
+                    onPressed: () {
+                      print(widget.booking);
+                      FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(FirebaseAuth.instance.currentUser.uid)
+                          .update({
+                        'bookings': FieldValue.arrayRemove([widget.booking])
+                      });
                     },
                     child: Text(
                       "Cancel Reservation",
@@ -139,3 +140,5 @@ class _MyBookingTileState extends State<MyBookingTile> {
     );
   }
 }
+
+// TODO: Realtime Changes

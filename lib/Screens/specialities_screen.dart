@@ -6,8 +6,8 @@ import 'package:clinido/widgets/specialities_list.dart';
 class SpecialitiesScreen extends StatefulWidget {
   static String id = "specialities_screen";
   // final List<Doctor> doctos;
-  final List<Map<String, dynamic>> doctos;
-  const SpecialitiesScreen({Key key, @required this.doctos}) : super(key: key);
+  final List<Map<String, dynamic>> doctors;
+  const SpecialitiesScreen({Key key, @required this.doctors}) : super(key: key);
 
   @override
   _SpecialitiesScreenState createState() => _SpecialitiesScreenState();
@@ -135,7 +135,7 @@ class _SpecialitiesScreenState extends State<SpecialitiesScreen> {
         onTap: () => FocusManager.instance.primaryFocus.unfocus(),
         child: SpecialitiesList(
           specialities: filteredList.isEmpty ? specialities : filteredList,
-          doctors: widget.doctos,
+          doctors: widget.doctors,
         ),
       ),
     );

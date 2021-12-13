@@ -61,7 +61,7 @@ class _MyAppState extends State<MyApp> {
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
         HomeScreen.id: (context) => HomeScreen(),
-        SpecialitiesScreen.id: (context) => SpecialitiesScreen(doctos: []),
+        SpecialitiesScreen.id: (context) => SpecialitiesScreen(doctors: []),
         SpecialityDoctorsScreen.id: (context) =>
             SpecialityDoctorsScreen(doctors: [], screenTitle: ''),
         ConfirmScreen.id: (context) => ConfirmScreen(),

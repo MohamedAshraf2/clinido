@@ -44,6 +44,7 @@ class _DoctorCardState extends State<DoctorCard> {
                       ),
                     ),
                     Container(
+                      width: 200,
                       margin: EdgeInsets.only(left: 10, top: 10),
                       child: Text(
                         // "Consaltent of Allgery and immunology",
