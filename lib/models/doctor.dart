@@ -22,12 +22,12 @@ class Doctor {
     this.mobile,
   });
 
-  Doctor.fromJson(Map<String, dynamic> json, String drId) {
+  Doctor.fromJson(Map<String, dynamic> json) {
     drArea = json['drArea'];
     drCategory = json['drCategory'];
     drCity = json['drCity'];
     firstName = json['firstName'];
-    id = drId;
+    id = json['id'];
     lastName = json['lastName'];
     mobile = json['mobile'];
   }

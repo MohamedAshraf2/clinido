@@ -5,8 +5,7 @@ import 'package:clinido/widgets/specialities_list.dart';
 
 class SpecialitiesScreen extends StatefulWidget {
   static String id = "specialities_screen";
-  // final List<Doctor> doctos;
-  final List<Map<String, dynamic>> doctors;
+  final List<Doctor> doctors;
   const SpecialitiesScreen({Key key, @required this.doctors}) : super(key: key);
 
   @override

@@ -2,11 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:clinido/screens/home_screen.dart';
+import 'package:clinido/models/doctor.dart';
 import 'package:intl/intl.dart';
 
 class ConfirmScreen extends StatefulWidget {
   static String id = "confirm_screen";
-  final Map<String, dynamic> doctor;
+  final Doctor doctor;
   const ConfirmScreen({this.doctor});
 
   @override
@@ -96,7 +97,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "${widget.doctor['firstName']} ${widget.doctor['lastName']}",
+                            "${widget.doctor.firstName} ${widget.doctor.lastName}",
                             style: TextStyle(
                                 color: Colors.lightBlueAccent,
                                 fontWeight: FontWeight.bold,
@@ -106,7 +107,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                             margin: EdgeInsets.only(top: 10),
                             width: 200,
                             child: Text(
-                              "${widget.doctor['drCategory']}",
+                              "${widget.doctor.drCategory}",
                               style: TextStyle(
                                   color: Colors.grey,
                                   // fontWeight: FontWeight.bold,
@@ -241,9 +242,9 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                   style: ElevatedButton.styleFrom(primary: Color(0xff2fc34b)),
                   onPressed: () => {
                     booking.add({
-                      'DoctorCategory': '${widget.doctor['drCategory']}',
+                      'DoctorCategory': '${widget.doctor.drCategory}',
                       'DoctorName':
-                          '${widget.doctor['firstName']} ${widget.doctor['lastName']}',
+                          '${widget.doctor.firstName} ${widget.doctor.lastName}',
                       'email': '$emaill',
                       'name': '$username',
                       'phone': '$phonee',
@@ -253,12 +254,14 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                           .doc(_auth.currentUser.uid)
                           .get()
                           .then((fu) {
-                        List<dynamic> tb = fu.data()['bookings'];
+                        List<dynamic> tb = fu.data()['bookings'] != null
+                            ? fu.data()['bookings']
+                            : [];
                         tb.add({
-                          'DoctorCategory': '${widget.doctor['drCategory']}',
-                          'DoctorPhone': '${widget.doctor['mobile']}',
+                          'DoctorCategory': '${widget.doctor.drCategory}',
+                          'DoctorPhone': '${widget.doctor.mobile}',
                           'DoctorName':
-                              '${widget.doctor['firstName']} ${widget.doctor['lastName']}',
+                              '${widget.doctor.firstName} ${widget.doctor.lastName}',
                           'email': '$emaill',
                           'name': '$username',
                           'phone': '$phonee',
@@ -269,9 +272,21 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                             .doc(_auth.currentUser.uid)
                             .update({
                           'bookings': tb,
-                        }).then((value) => Navigator.of(context).popUntil(
-                                (value) =>
-                                    value.settings.name == HomeScreen.id));
+                          // }).then((value) => Navigator.of(context).popUntil((value) => value.settings.name == HomeScreen.id));
+                          // }).then((value) => Navigator.of(context).pop());
+                          /* }).then((value) => Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(
+                                    builder: (_) => HomeScreen()))); */
+                        }).then((value) => Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        HomeScreen(
+                                      isBookingDone: true,
+                                    ),
+                                  ),
+                                  (route) => true,
+                                ));
                       });
                     }).catchError((e) => {print('Failld ya 3beet')})
                   },

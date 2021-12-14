@@ -13,8 +13,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = "home_screen";
+  bool isBookingDone;
   int selectedTabIndex;
-  HomeScreen({Key key, this.selectedTabIndex}) : super(key: key);
+  HomeScreen({Key key, this.selectedTabIndex, this.isBookingDone = false})
+      : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -24,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final _auth = FirebaseAuth.instance;
   final store = FirebaseFirestore.instance;
-  final List<Map<String, dynamic>> doctorsss = [];
+  // final List<Map<String, dynamic>> doctorsss = [];
 
   String username = '';
   @override
@@ -35,10 +37,21 @@ class _HomeScreenState extends State<HomeScreen> {
       _selectedIndex =
           widget.selectedTabIndex != null ? widget.selectedTabIndex : 0;
     });
-    getDocrorsdata();
+    // getDocrorsdata();
+    Future.delayed(const Duration(milliseconds: 100), () {
+      showSuccessSnack();
+    });
   }
 
-  getDocrorsdata() async {
+  void showSuccessSnack() {
+    if (widget.isBookingDone == true) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Reservation added successfully')));
+      widget.isBookingDone = false;
+    }
+  }
+
+  /* getDocrorsdata() async {
     final _docrorss = await store.collection("Doctor").get();
     for (var doctor in _docrorss.docs) {
       Map<String, dynamic> tempDoctor = doctor.data();
@@ -46,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
       // doctorsss.add(Doctor.fromJson(doctor.data(), doctor.id));
       doctorsss.add(tempDoctor);
     }
-  }
+  } */
 
   void getCurrentUser() async {
     // _auth.currentUser.
@@ -73,7 +86,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('User ID: ${FirebaseAuth.instance.currentUser.uid} From Home Screen');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -237,9 +249,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: _selectedIndex == 0
-          ? HomeTab(
-              doctors: doctorsss,
-            )
+          ? HomeTab()
           : _selectedIndex == 1
               ? MyBookingsTab()
               : _selectedIndex == 2

@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:clinido/models/doctor.dart';
 
 class DoctorCard extends StatefulWidget {
-  // final Doctor doctor;
-  final Map<String, dynamic> doctor;
+  final Doctor doctor;
   const DoctorCard({Key key, @required this.doctor}) : super(key: key);
 
   @override
@@ -36,7 +35,7 @@ class _DoctorCardState extends State<DoctorCard> {
                       child: Text(
                         // "Dr. Mohammed Ashraf",
                         // "${widget.doctor.firstName} ${widget.doctor.lastName}",
-                        "${widget.doctor['firstName']} ${widget.doctor['lastName']}",
+                        "${widget.doctor.firstName} ${widget.doctor.lastName}",
                         style: TextStyle(
                             color: Colors.lightBlueAccent,
                             fontWeight: FontWeight.bold,
@@ -49,7 +48,7 @@ class _DoctorCardState extends State<DoctorCard> {
                       child: Text(
                         // "Consaltent of Allgery and immunology",
                         // widget.doctor.speciality.title,
-                        widget.doctor['drCategory'],
+                        widget.doctor.drCategory,
                         style: TextStyle(
                             // color: Colors.lightBlueAccent,
                             fontWeight: FontWeight.bold,
@@ -111,7 +110,7 @@ class _DoctorCardState extends State<DoctorCard> {
             child: Text(
               // 'Heliopless , 12 st boutstrab ghlya 4floor Roxy',
               // '${widget.doctor.city.name}, ${widget.doctor.city.areas[0].name}',
-              '${widget.doctor['drCity']}, ${widget.doctor['drArea']}',
+              '${widget.doctor.drCity}, ${widget.doctor.drArea}',
             ),
           ),
           Container(

@@ -5,8 +5,7 @@ import 'package:clinido/widgets/doctors_list.dart';
 class SpecialityDoctorsScreen extends StatefulWidget {
   static String id = "speciality_doctors_screen";
   final String screenTitle;
-  // final List<Doctor> doctors;
-  final List<Map<String, dynamic>> doctors;
+  final List<Doctor> doctors;
   const SpecialityDoctorsScreen(
       {Key key, @required this.screenTitle, @required this.doctors})
       : super(key: key);
@@ -17,7 +16,7 @@ class SpecialityDoctorsScreen extends StatefulWidget {
 }
 
 class _SpecialityDoctorsScreenState extends State<SpecialityDoctorsScreen> {
-  final List<Map<String, dynamic>> sellectedCateg = [];
+  final List<Doctor> sellectedCateg = [];
 
   @override
   void initState() {
@@ -27,7 +26,7 @@ class _SpecialityDoctorsScreenState extends State<SpecialityDoctorsScreen> {
 
   initSpecialityDoctors() {
     widget.doctors.forEach((doctor) {
-      if (doctor['drCategory'] == widget.screenTitle) {
+      if (doctor.drCategory == widget.screenTitle) {
         setState(() {
           sellectedCateg.add(doctor);
         });
