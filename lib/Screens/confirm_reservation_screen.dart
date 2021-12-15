@@ -87,8 +87,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                       width: 60,
                       height: 60,
                       child: CircleAvatar(
-                        backgroundColor: Colors.blueAccent,
-                        child: Icon(Icons.person),
+                        backgroundImage: NetworkImage(widget.doctor.url),
                       ),
                     ),
                     Container(
@@ -142,7 +141,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                               style: TextStyle(
                                   fontSize: 15, fontWeight: FontWeight.bold),
                             ),
-                            Text('15 Minutes'),
+                            Text('${widget.doctor.time}'),
                           ],
                         ),
                       ],
@@ -164,7 +163,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                               style: TextStyle(
                                   fontSize: 15, fontWeight: FontWeight.bold),
                             ),
-                            Text('400 EGP'),
+                            Text('${widget.doctor.fees}'),
                           ],
                         )
                       ],

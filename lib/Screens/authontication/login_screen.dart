@@ -2,8 +2,7 @@ import 'package:clinido/constants.dart';
 import 'package:clinido/widgets/rounded_btn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import '../home_screen.dart';
+import 'package:clinido/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static String id = "login_screen";

@@ -11,6 +11,10 @@ class Doctor {
   String id;
   String lastName;
   String mobile;
+  String addr;
+  String fees;
+  String time;
+  String url;
 
   Doctor({
     this.drArea,
@@ -20,6 +24,10 @@ class Doctor {
     this.id,
     this.lastName,
     this.mobile,
+    this.addr,
+    this.fees,
+    this.time,
+    this.url,
   });
 
   Doctor.fromJson(Map<String, dynamic> json) {
@@ -30,6 +38,10 @@ class Doctor {
     id = json['id'];
     lastName = json['lastName'];
     mobile = json['mobile'];
+    addr = json['addr'];
+    fees = json['fees'];
+    time = json['time'];
+    url = json['url'];
   }
 
   Map<String, String> toJson() {
@@ -40,7 +52,11 @@ class Doctor {
       'drArea': drArea,
       'drCategory': drCategory,
       'drCity': drCity,
-      'mobile': mobile
+      'mobile': mobile,
+      'addr': addr,
+      'fees': fees,
+      'time': time,
+      'url ': url,
     };
   }
 }

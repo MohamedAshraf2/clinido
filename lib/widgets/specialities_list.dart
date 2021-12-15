@@ -6,10 +6,7 @@ import 'package:clinido/widgets/speciality_tile.dart';
 
 class SpecialitiesList extends StatefulWidget {
   List<Speciality> specialities;
-  final List<Doctor> doctors;
-  SpecialitiesList(
-      {Key key, @required this.specialities, @required this.doctors})
-      : super(key: key);
+  SpecialitiesList({Key key, @required this.specialities}) : super(key: key);
 
   @override
   _SpecialitiesListState createState() => _SpecialitiesListState();
@@ -25,7 +22,6 @@ class _SpecialitiesListState extends State<SpecialitiesList> {
           MaterialPageRoute(
             builder: (_) => SpecialityDoctorsScreen(
               screenTitle: widget.specialities[index].title,
-              doctors: widget.doctors,
             ),
           ),
         );

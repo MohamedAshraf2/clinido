@@ -3,12 +3,12 @@ import 'package:clinido/screens/settings/about_us_screen.dart';
 import 'package:clinido/screens/settings/contact_us_screen.dart';
 import 'package:clinido/screens/settings/privacy_screen.dart';
 import 'package:clinido/screens/settings/terms_screen.dart';
+import 'package:clinido/screens/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:clinido/screens/tabs/home_tab.dart';
 import 'package:clinido/screens/tabs/my_bookings_tab.dart';
-import 'package:clinido/screens/tabs/notifications_tab.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,7 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final _auth = FirebaseAuth.instance;
   final store = FirebaseFirestore.instance;
-  // final List<Map<String, dynamic>> doctorsss = [];
 
   String username = '';
   @override
@@ -227,7 +226,11 @@ class _HomeScreenState extends State<HomeScreen> {
               // Logout
 
               GestureDetector(
-                onTap: () => {},
+                onTap: () {
+                  FirebaseAuth.instance.signOut();
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (_) => WelcomeScreen()));
+                },
                 child: Container(
                   margin: EdgeInsets.all(10),
                   child: Row(
@@ -252,9 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ? HomeTab()
           : _selectedIndex == 1
               ? MyBookingsTab()
-              : _selectedIndex == 2
-                  ? NotificationsTab()
-                  : Container(),
+              : Container(),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.lightBlueAccent,
         items: [
@@ -266,27 +267,10 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.business),
             label: 'My Bookings',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notifications',
-          ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.white,
         onTap: _onItemTapped,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print(FirebaseAuth.instance.currentUser.uid);
-          FirebaseFirestore.instance
-              .collection('users')
-              .doc(FirebaseAuth.instance.currentUser.uid)
-              .get()
-              .then((value) {
-            print(value.data());
-          });
-        },
-        child: Icon(Icons.add),
       ),
     );
   }

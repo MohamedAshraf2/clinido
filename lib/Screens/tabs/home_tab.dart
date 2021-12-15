@@ -34,7 +34,6 @@ class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
     return Consumer<DoctorsData>(builder: (context, doctorsData, child) {
-      print(doctorsData.doctors);
       return Container(
         color: Colors.white,
         child: Column(
@@ -140,7 +139,7 @@ class _HomeTabState extends State<HomeTab> {
               child: Expanded(
                 child: CarouselSlider(
                   options: CarouselOptions(
-                    height: 330,
+                    height: 370,
                     autoPlay: true,
                     autoPlayInterval: Duration(seconds: 3),
                   ),

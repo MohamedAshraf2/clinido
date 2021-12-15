@@ -23,8 +23,7 @@ class _DoctorCardState extends State<DoctorCard> {
                 width: 45,
                 height: 45,
                 child: CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/GSCT8252.jpg'),
-                  // backgroundImage: widget.doctor.image,
+                  backgroundImage: NetworkImage(widget.doctor.url),
                 ),
               ),
               Container(
@@ -33,8 +32,6 @@ class _DoctorCardState extends State<DoctorCard> {
                     Container(
                       margin: EdgeInsets.only(right: 20),
                       child: Text(
-                        // "Dr. Mohammed Ashraf",
-                        // "${widget.doctor.firstName} ${widget.doctor.lastName}",
                         "${widget.doctor.firstName} ${widget.doctor.lastName}",
                         style: TextStyle(
                             color: Colors.lightBlueAccent,
@@ -46,8 +43,6 @@ class _DoctorCardState extends State<DoctorCard> {
                       width: 200,
                       margin: EdgeInsets.only(left: 10, top: 10),
                       child: Text(
-                        // "Consaltent of Allgery and immunology",
-                        // widget.doctor.speciality.title,
                         widget.doctor.drCategory,
                         style: TextStyle(
                             // color: Colors.lightBlueAccent,
@@ -104,13 +99,25 @@ class _DoctorCardState extends State<DoctorCard> {
           Container(
             margin: EdgeInsets.symmetric(vertical: 10),
             padding: EdgeInsets.only(left: 30, top: 15),
-            height: 40,
+            height: 80,
             width: double.infinity,
             color: Colors.grey[200],
-            child: Text(
-              // 'Heliopless , 12 st boutstrab ghlya 4floor Roxy',
-              // '${widget.doctor.city.name}, ${widget.doctor.city.areas[0].name}',
-              '${widget.doctor.drCity}, ${widget.doctor.drArea}',
+            child: Column(
+              children: [
+                Text(
+                  '${widget.doctor.drCity} -- ${widget.doctor.drArea}',
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Clinic Location',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '${widget.doctor.addr}',
+                ),
+              ],
             ),
           ),
           Container(
@@ -135,7 +142,7 @@ class _DoctorCardState extends State<DoctorCard> {
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold),
                         ),
-                        Text('15 Minutes'),
+                        Text('${widget.doctor.time}'),
                       ],
                     ),
                   ],
@@ -157,7 +164,7 @@ class _DoctorCardState extends State<DoctorCard> {
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold),
                         ),
-                        Text('400 EGP'),
+                        Text('${widget.doctor.fees}'),
                       ],
                     )
                   ],

@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:clinido/models/doctor.dart';
+import 'package:provider/provider.dart';
+import 'package:clinido/providers/doctors_data.dart';
 import 'package:clinido/widgets/doctor_card.dart';
 
 class DoctorsList extends StatelessWidget {
-  final List<Doctor> doctors;
-  const DoctorsList({Key key, @required this.doctors}) : super(key: key);
-
-  Widget doctorBuilder(BuildContext context, int index) {
+  Widget doctorBuilder(int index, DoctorsData doctorsData) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: DoctorCard(
-        doctor: doctors[index],
+        doctor: doctorsData.specialityDoctors[index],
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey[400],
-      child: ListView.builder(
-        itemCount: doctors.length,
-        itemBuilder: (BuildContext context, int index) =>
-            doctorBuilder(context, index),
-      ),
-    );
+    return Consumer<DoctorsData>(builder: (context, doctorsData, child) {
+      return Container(
+        color: Colors.grey[400],
+        child: ListView.builder(
+          itemCount: doctorsData.specialityDoctors.length,
+          itemBuilder: (BuildContext context, int index) =>
+              doctorBuilder(index, doctorsData),
+        ),
+      );
+    });
   }
 }

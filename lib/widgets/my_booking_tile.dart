@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:clinido/models/booking.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
 class MyBookingTile extends StatefulWidget {
-  final Map<dynamic, dynamic> booking;
+  final Booking booking;
 
   const MyBookingTile({Key key, @required this.booking}) : super(key: key);
 
@@ -14,26 +15,10 @@ class MyBookingTile extends StatefulWidget {
 }
 
 class _MyBookingTileState extends State<MyBookingTile> {
-  List<dynamic> bookings = [];
-
-  @override
-  void initState() {
-    super.initState();
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser.uid)
-        .get()
-        .then((doc) {
-      setState(() {
-        bookings.addAll(doc.data()['bookings']);
-      });
-    });
-  }
+  void cancelBooking() {}
 
   @override
   Widget build(BuildContext context) {
-    print(
-        'User ID: ${FirebaseAuth.instance.currentUser.uid} From My Booking Tile');
     return Card(
       child: Container(
         child: Column(
@@ -57,7 +42,7 @@ class _MyBookingTileState extends State<MyBookingTile> {
                         child: Text(
                           // "Dr. Mohammed Ashraf",
                           // "${widget.doctor.firstName} ${widget.doctor.lastName}",
-                          "${widget.booking['DoctorName']}",
+                          "${widget.booking.DoctorName}",
                           style: TextStyle(
                               color: Colors.lightBlueAccent,
                               fontWeight: FontWeight.bold,
@@ -69,7 +54,7 @@ class _MyBookingTileState extends State<MyBookingTile> {
                         child: Text(
                           // "Consaltent of Allgery and immunology",
                           // widget.doctor.speciality.title,
-                          "${widget.booking['DoctorCategory']}",
+                          "${widget.booking.DoctorCategory}",
                           style: TextStyle(
                               // color: Colors.lightBlueAccent,
                               fontWeight: FontWeight.bold,
@@ -93,7 +78,7 @@ class _MyBookingTileState extends State<MyBookingTile> {
                   Text(
                     // 'Heliopless , 12 st boutstrab ghlya 4floor Roxy',
                     // '${widget.doctor.city.name}, ${widget.doctor.city.areas[0].name}',
-                    '${widget.booking['resevationTime']}',
+                    '${widget.booking.resevationTime}',
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: Colors.green[500]),
@@ -112,18 +97,18 @@ class _MyBookingTileState extends State<MyBookingTile> {
                 children: [
                   ElevatedButton(
                     onPressed: () =>
-                        launch('tel://${widget.booking['DoctorPhone']}'),
+                        launch('tel://${widget.booking.DoctorPhone}'),
                     child: Text('Call Clinic'),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: Colors.red[900]),
                     onPressed: () {
-                      print(widget.booking);
                       FirebaseFirestore.instance
                           .collection('users')
                           .doc(FirebaseAuth.instance.currentUser.uid)
                           .update({
-                        'bookings': FieldValue.arrayRemove([widget.booking])
+                        'bookings':
+                            FieldValue.arrayRemove([widget.booking.toJson()])
                       });
                     },
                     child: Text(

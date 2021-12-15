@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:clinido/Screens/home_screen.dart';
 import 'package:clinido/Screens/welcome_screen.dart';
 
@@ -22,9 +23,14 @@ class _SplashScreenState extends State<SplashScreen> {
   void initAuthState() {
     if (FirebaseAuth.instance.currentUser != null) {
       Future.delayed(
-          const Duration(milliseconds: 1500),
-          () => Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (_) => HomeScreen())));
+        const Duration(milliseconds: 1500),
+        () => Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (_) => HomeScreen(),
+          ),
+        ),
+      );
     } else {
       Future.delayed(
           const Duration(milliseconds: 1500),

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:clinido/screens/splash_screen.dart';
@@ -11,6 +12,8 @@ import 'package:clinido/screens/speciality_doctors_screen.dart';
 import 'package:clinido/screens/confirm_reservation_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:clinido/providers/doctors_data.dart';
+import 'package:clinido/providers/user_data.dart';
+import 'package:clinido/models/fire_user.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -30,6 +33,19 @@ Stream<DoctorsData> doctorsStream =
   return dd;
 });
 
+Stream<UserData> userStream =
+    FirebaseFirestore.instance.collection('users').snapshots().map((snapshot) {
+  UserData ud = UserData();
+  snapshot.docs.forEach((doc) {
+    if (FirebaseAuth.instance.currentUser != null) {
+      if (doc.id == FirebaseAuth.instance.currentUser.uid) {
+        ud.fireUser = FireUser.fromJson(doc.data());
+      }
+    }
+  });
+  return ud;
+});
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -40,8 +56,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
+          StreamProvider<UserData>.value(
+              value: userStream, initialData: UserData()),
           StreamProvider<DoctorsData>.value(
-              value: doctorsStream, initialData: DoctorsData())
+              value: doctorsStream, initialData: DoctorsData()),
         ],
         child: MaterialApp(
           theme: ThemeData(primarySwatch: Colors.lightBlue),
@@ -56,9 +74,9 @@ class _MyAppState extends State<MyApp> {
             LoginScreen.id: (context) => LoginScreen(),
             RegistrationScreen.id: (context) => RegistrationScreen(),
             HomeScreen.id: (context) => HomeScreen(),
-            SpecialitiesScreen.id: (context) => SpecialitiesScreen(doctors: []),
+            SpecialitiesScreen.id: (context) => SpecialitiesScreen(),
             SpecialityDoctorsScreen.id: (context) =>
-                SpecialityDoctorsScreen(doctors: [], screenTitle: ''),
+                SpecialityDoctorsScreen(screenTitle: ''),
             ConfirmScreen.id: (context) => ConfirmScreen(),
           },
         ));

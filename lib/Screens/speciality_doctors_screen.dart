@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:clinido/providers/doctors_data.dart';
 import 'package:clinido/models/doctor.dart';
 import 'package:clinido/widgets/doctors_list.dart';
 
 class SpecialityDoctorsScreen extends StatefulWidget {
   static String id = "speciality_doctors_screen";
   final String screenTitle;
-  final List<Doctor> doctors;
-  const SpecialityDoctorsScreen(
-      {Key key, @required this.screenTitle, @required this.doctors})
+  const SpecialityDoctorsScreen({Key key, @required this.screenTitle})
       : super(key: key);
 
   @override
@@ -20,18 +20,13 @@ class _SpecialityDoctorsScreenState extends State<SpecialityDoctorsScreen> {
 
   @override
   void initState() {
-    super.initState();
     initSpecialityDoctors();
+    super.initState();
   }
 
   initSpecialityDoctors() {
-    widget.doctors.forEach((doctor) {
-      if (doctor.drCategory == widget.screenTitle) {
-        setState(() {
-          sellectedCateg.add(doctor);
-        });
-      }
-    });
+    Provider.of<DoctorsData>(context, listen: false)
+        .initSpecialityDoctors(widget.screenTitle);
   }
 
   @override
@@ -40,10 +35,7 @@ class _SpecialityDoctorsScreenState extends State<SpecialityDoctorsScreen> {
       appBar: AppBar(
         title: Text(widget.screenTitle),
       ),
-      body: DoctorsList(
-        // doctors: widget.doctors,
-        doctors: sellectedCateg,
-      ),
+      body: DoctorsList(),
     );
   }
 }

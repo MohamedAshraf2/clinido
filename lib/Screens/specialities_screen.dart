@@ -5,8 +5,7 @@ import 'package:clinido/widgets/specialities_list.dart';
 
 class SpecialitiesScreen extends StatefulWidget {
   static String id = "specialities_screen";
-  final List<Doctor> doctors;
-  const SpecialitiesScreen({Key key, @required this.doctors}) : super(key: key);
+  const SpecialitiesScreen({Key key}) : super(key: key);
 
   @override
   _SpecialitiesScreenState createState() => _SpecialitiesScreenState();
@@ -15,19 +14,31 @@ class SpecialitiesScreen extends StatefulWidget {
 class _SpecialitiesScreenState extends State<SpecialitiesScreen> {
   List<Speciality> specialities = [
     Speciality(
-      icon: Icon(Icons.bug_report),
+      icon: Icon(
+        Icons.bug_report,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Allergy and Immunology (Sensitivity and Immunity)',
     ),
     Speciality(
-      icon: Icon(Icons.person),
+      icon: Icon(
+        Icons.person,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Andrology and Male Infertility',
     ),
     Speciality(
-      icon: Icon(Icons.hearing_disabled),
+      icon: Icon(
+        Icons.hearing_disabled,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Audiology',
     ),
     Speciality(
-      icon: Icon(Icons.favorite),
+      icon: Icon(
+        Icons.favorite,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Cardiology and Thorcic Surgery (Heart / Chest)',
     ),
     Speciality(
@@ -38,59 +49,101 @@ class _SpecialitiesScreenState extends State<SpecialitiesScreen> {
       title: 'Cardiology and Vascular Disease (Heart)',
     ),
     Speciality(
-      icon: Icon(Icons.face),
+      icon: Icon(
+        Icons.whatshot_outlined,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Chest and Respiratory',
     ),
     Speciality(
-      icon: Icon(Icons.settings),
+      icon: Icon(
+        Icons.fastfood_outlined,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Dentistry (Teeth)',
     ),
     Speciality(
-      icon: Icon(Icons.settings),
+      icon: Icon(
+        Icons.accessibility_new,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Dermatology (Skin)',
     ),
     Speciality(
-      icon: Icon(Icons.settings),
+      icon: Icon(
+        Icons.all_inclusive_rounded,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Diabetes and Endocrinology',
     ),
     Speciality(
-      icon: Icon(Icons.settings),
+      icon: Icon(
+        Icons.airline_seat_flat_sharp,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Diagnostic Radiology',
     ),
     Speciality(
-      icon: Icon(Icons.settings),
+      icon: Icon(
+        Icons.food_bank_rounded,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Dietician and Nutrition',
     ),
     Speciality(
-      icon: Icon(Icons.settings),
+      icon: Icon(
+        Icons.hearing_disabled,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Ear, Nose and Throat',
     ),
     Speciality(
-      icon: Icon(Icons.settings),
+      icon: Icon(
+        Icons.family_restroom,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Family medicine',
     ),
     Speciality(
-      icon: Icon(Icons.settings),
+      icon: Icon(
+        Icons.biotech,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Gastroenterology and Endoscopy',
     ),
     Speciality(
-      icon: Icon(Icons.settings),
+      icon: Icon(
+        Icons.run_circle,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'General Pracitce',
     ),
     Speciality(
-      icon: Icon(Icons.settings),
+      icon: Icon(
+        Icons.accessible_rounded,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Geriatrics (Old People Health)',
     ),
     Speciality(
-      icon: Icon(Icons.settings),
+      icon: Icon(
+        Icons.baby_changing_station_outlined,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Gynaecology and Infertility',
     ),
     Speciality(
-      icon: Icon(Icons.settings),
+      icon: Icon(
+        Icons.biotech_sharp,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Hematology',
     ),
     Speciality(
-      icon: Icon(Icons.settings),
+      icon: Icon(
+        Icons.ac_unit,
+        color: Colors.lightBlueAccent,
+      ),
       title: 'Hepatology (Liver Doctor)',
     ),
   ];
@@ -134,7 +187,6 @@ class _SpecialitiesScreenState extends State<SpecialitiesScreen> {
         onTap: () => FocusManager.instance.primaryFocus.unfocus(),
         child: SpecialitiesList(
           specialities: filteredList.isEmpty ? specialities : filteredList,
-          doctors: widget.doctors,
         ),
       ),
     );
