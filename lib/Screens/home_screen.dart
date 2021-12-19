@@ -1,4 +1,5 @@
 import 'package:clinido/models/doctor.dart';
+import 'package:clinido/screens/chat_screen.dart';
 import 'package:clinido/screens/settings/about_us_screen.dart';
 import 'package:clinido/screens/settings/contact_us_screen.dart';
 import 'package:clinido/screens/settings/privacy_screen.dart';
@@ -28,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final store = FirebaseFirestore.instance;
 
   String username = '';
+
   @override
   void initState() {
     super.initState();
@@ -44,8 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void showSuccessSnack() {
     if (widget.isBookingDone == true) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Reservation added successfully')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+        'Reservation added successfully',
+        style: TextStyle(color: Colors.green),
+      )));
       widget.isBookingDone = false;
     }
   }
@@ -223,6 +228,33 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
+              //Chat us
+              GestureDetector(
+                onTap: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => ChatScreen())),
+                child: Container(
+                  margin: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.message,
+                        color: Colors.lightBlueAccent,
+                      ),
+                      Container(
+                          margin: EdgeInsets.only(left: 15),
+                          child: Text('Chat Us ')),
+                    ],
+                  ),
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Divider(
+                  thickness: 1.25,
+                  color: Colors.grey[400],
+                ),
+              ),
               // Logout
 
               GestureDetector(

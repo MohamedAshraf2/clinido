@@ -30,7 +30,7 @@ class _MyBookingTileState extends State<MyBookingTile> {
                   width: 45,
                   height: 45,
                   child: CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/GSCT8252.jpg'),
+                    backgroundImage: NetworkImage(widget.booking.image),
                     // backgroundImage: widget.doctor.image,
                   ),
                 ),
@@ -80,11 +80,24 @@ class _MyBookingTileState extends State<MyBookingTile> {
                     // '${widget.doctor.city.name}, ${widget.doctor.city.areas[0].name}',
                     '${widget.booking.resevationTime}',
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Colors.green[500]),
-                    onPressed: () {},
-                    child: Text('Booking info'),
+                  SizedBox(
+                    height: 10,
                   ),
+                  Text(
+                    // 'Heliopless , 12 st boutstrab ghlya 4floor Roxy',
+                    // '${widget.doctor.city.name}, ${widget.doctor.city.areas[0].name}',
+                    'Location ',
+                  ),
+                  Text(
+                    // 'Heliopless , 12 st boutstrab ghlya 4floor Roxy',
+                    // '${widget.doctor.city.name}, ${widget.doctor.city.areas[0].name}',
+                    '${widget.booking.addr}',
+                  ),
+                  // ElevatedButton(
+                  //   style: ElevatedButton.styleFrom(primary: Colors.green[500]),
+                  //   onPressed: () {},
+                  //   child: Text('Booking info'),
+                  // ),
                 ],
               ),
             ),

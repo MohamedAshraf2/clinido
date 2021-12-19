@@ -46,6 +46,12 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
     });
   }
 
+  void setusername(vall) {
+    setState(() {
+      username = vall;
+    });
+  }
+
   void getCurrentUser() async {
     // _auth.currentUser.
     try {
@@ -54,9 +60,9 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
           .doc(_auth.currentUser.uid)
           .get()
           .then((value) {
-        setState(() {
-          username = value.data()['displayName'];
-        });
+        // setState(() {
+        //   username = value.data()['displayName'];
+        // });
         setState(() {
           emaill = value.data()['email'];
         });
@@ -187,17 +193,46 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                       children: [
                         Column(
                           children: [
-                            Text(
-                              "Pationt Name",
-                              style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontWeight: FontWeight.bold),
+                            // Text(
+                            //   "Pationt Name",
+                            //   style: TextStyle(
+                            //       color: Colors.grey[600],
+                            //       fontWeight: FontWeight.bold),
+                            // ),
+                            // Text(
+                            //   '$username',
+                            //   style: TextStyle(
+                            //       fontWeight: FontWeight.bold, fontSize: 18),
+                            // ),
+                            Container(
+                              width: 360,
+                              margin: EdgeInsets.only(top: 30),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "Enter Pationt Name",
+                                    style: TextStyle(
+                                        color: Colors.grey[600],
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: 20),
+                                    width: double.infinity,
+                                    height: 50,
+                                    child: TextField(
+                                      onChanged: (val) => {setusername(val)},
+                                      keyboardType: TextInputType.text,
+                                      decoration: InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        labelText: 'Pationt Name',
+                                        hintText: 'enter pationt name',
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                            Text(
-                              '$username',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 18),
-                            ),
+
                             Container(
                               width: 360,
                               margin: EdgeInsets.only(top: 30),
@@ -264,7 +299,9 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                           'email': '$emaill',
                           'name': '$username',
                           'phone': '$phonee',
-                          'resevationTime': '$now'
+                          'resevationTime': '$now',
+                          'image': '${widget.doctor.url}',
+                          'addr': '${widget.doctor.addr}'
                         });
                         FirebaseFirestore.instance
                             .collection('users')

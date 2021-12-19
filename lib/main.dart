@@ -57,9 +57,20 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
         providers: [
           StreamProvider<UserData>.value(
-              value: userStream, initialData: UserData()),
+              value: userStream,
+              initialData: UserData(),
+              catchError: (context, error) {
+                print('Ew3a L Error: $error');
+                return UserData();
+              }),
           StreamProvider<DoctorsData>.value(
-              value: doctorsStream, initialData: DoctorsData()),
+            value: doctorsStream,
+            initialData: DoctorsData(),
+            catchError: (context, error) {
+              print('Ew3a L Error: $error');
+              return DoctorsData();
+            },
+          ),
         ],
         child: MaterialApp(
           theme: ThemeData(primarySwatch: Colors.lightBlue),

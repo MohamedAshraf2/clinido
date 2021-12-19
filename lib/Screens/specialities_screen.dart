@@ -171,13 +171,16 @@ class _SpecialitiesScreenState extends State<SpecialitiesScreen> {
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(kToolbarHeight),
           child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.grey[200],
+            ),
             margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            color: Colors.grey[200],
             child: TextField(
               decoration: InputDecoration(
                   hintText: 'Search',
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10))),
+                      borderRadius: BorderRadius.circular(15))),
               onChanged: (newText) => searchSpecialties(newText),
             ),
           ),

@@ -6,16 +6,19 @@ class Booking {
   String name;
   String phone;
   String resevationTime;
+  String image;
+  String addr;
 
-  Booking({
-    this.DoctorCategory,
-    this.DoctorName,
-    this.DoctorPhone,
-    this.email,
-    this.name,
-    this.phone,
-    this.resevationTime,
-  });
+  Booking(
+      {this.DoctorCategory,
+      this.DoctorName,
+      this.DoctorPhone,
+      this.email,
+      this.name,
+      this.phone,
+      this.resevationTime,
+      this.image,
+      this.addr});
 
   Booking.fromJson(Map<String, dynamic> json) {
     DoctorCategory = json['DoctorCategory'];
@@ -25,7 +28,11 @@ class Booking {
     name = json['name'];
     phone = json['phone'];
     resevationTime = json['resevationTime'];
+    image = json['image'];
+    addr = json['addr'];
   }
+
+  //  TODO: resevationTime this should be string from angular to firebase firestore to solve the StreamProvider<UserData> issue
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -36,6 +43,8 @@ class Booking {
     data['name'] = this.name;
     data['phone'] = this.phone;
     data['resevationTime'] = this.resevationTime;
+    data['image'] = this.image;
+    data['addr'] = this.addr;
     return data;
   }
 }
