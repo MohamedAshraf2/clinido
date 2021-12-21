@@ -242,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Container(
                           margin: EdgeInsets.only(left: 15),
-                          child: Text('Chat Us ')),
+                          child: Text('General Chat ')),
                     ],
                   ),
                 ),

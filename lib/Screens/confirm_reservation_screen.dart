@@ -275,56 +275,61 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Color(0xff2fc34b)),
                   onPressed: () => {
-                    booking.add({
-                      'DoctorCategory': '${widget.doctor.drCategory}',
-                      'DoctorName':
-                          '${widget.doctor.firstName} ${widget.doctor.lastName}',
-                      'email': '$emaill',
-                      'name': '$username',
-                      'phone': '$phonee',
-                    }).then((value) {
-                      FirebaseFirestore.instance
-                          .collection('users')
-                          .doc(_auth.currentUser.uid)
-                          .get()
-                          .then((fu) {
-                        List<dynamic> tb = fu.data()['bookings'] != null
-                            ? fu.data()['bookings']
-                            : [];
-                        tb.add({
+                    if (username != "" && phonee != "")
+                      {
+                        booking.add({
                           'DoctorCategory': '${widget.doctor.drCategory}',
-                          'DoctorPhone': '${widget.doctor.mobile}',
                           'DoctorName':
                               '${widget.doctor.firstName} ${widget.doctor.lastName}',
                           'email': '$emaill',
                           'name': '$username',
                           'phone': '$phonee',
-                          'resevationTime': '$now',
-                          'image': '${widget.doctor.url}',
-                          'addr': '${widget.doctor.addr}'
-                        });
-                        FirebaseFirestore.instance
-                            .collection('users')
-                            .doc(_auth.currentUser.uid)
-                            .update({
-                          'bookings': tb,
-                          // }).then((value) => Navigator.of(context).popUntil((value) => value.settings.name == HomeScreen.id));
-                          // }).then((value) => Navigator.of(context).pop());
-                          /* }).then((value) => Navigator.of(context)
+                        }).then((value) {
+                          FirebaseFirestore.instance
+                              .collection('users')
+                              .doc(_auth.currentUser.uid)
+                              .get()
+                              .then((fu) {
+                            List<dynamic> tb = fu.data()['bookings'] != null
+                                ? fu.data()['bookings']
+                                : [];
+                            tb.add({
+                              'DoctorCategory': '${widget.doctor.drCategory}',
+                              'DoctorPhone': '${widget.doctor.mobile}',
+                              'DoctorName':
+                                  '${widget.doctor.firstName} ${widget.doctor.lastName}',
+                              'email': '$emaill',
+                              'name': '$username',
+                              'phone': '$phonee',
+                              'resevationTime': '$now',
+                              'image': '${widget.doctor.url}',
+                              'addr': '${widget.doctor.addr}'
+                            });
+                            FirebaseFirestore.instance
+                                .collection('users')
+                                .doc(_auth.currentUser.uid)
+                                .update({
+                              'bookings': tb,
+                              // }).then((value) => Navigator.of(context).popUntil((value) => value.settings.name == HomeScreen.id));
+                              // }).then((value) => Navigator.of(context).pop());
+                              /* }).then((value) => Navigator.of(context)
                                 .pushReplacement(MaterialPageRoute(
                                     builder: (_) => HomeScreen()))); */
-                        }).then((value) => Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        HomeScreen(
-                                      isBookingDone: true,
-                                    ),
-                                  ),
-                                  (route) => true,
-                                ));
-                      });
-                    }).catchError((e) => {print('Failld ya 3beet')})
+                            }).then((value) => Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            HomeScreen(
+                                          isBookingDone: true,
+                                        ),
+                                      ),
+                                      (route) => true,
+                                    ));
+                          });
+                        }).catchError((e) => {print('Failld ya 3beet')})
+                      }
+                    else
+                      {null}
                   },
                   child: Text(
                     "Confirm",

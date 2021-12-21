@@ -139,7 +139,7 @@ class _HomeTabState extends State<HomeTab> {
               child: Expanded(
                 child: CarouselSlider(
                   options: CarouselOptions(
-                    height: 370,
+                    height: 380,
                     autoPlay: true,
                     autoPlayInterval: Duration(seconds: 3),
                   ),

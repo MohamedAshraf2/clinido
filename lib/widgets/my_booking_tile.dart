@@ -68,20 +68,28 @@ class _MyBookingTileState extends State<MyBookingTile> {
             ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 10),
-              padding: EdgeInsets.only(left: 30, top: 15),
-              height: 100,
+              padding: EdgeInsets.only(top: 15),
+              height: 130,
               width: double.infinity,
               color: Colors.grey[200],
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('Reservation Time :'),
-                  Text(
-                    // 'Heliopless , 12 st boutstrab ghlya 4floor Roxy',
-                    // '${widget.doctor.city.name}, ${widget.doctor.city.areas[0].name}',
-                    '${widget.booking.resevationTime}',
+                  Container(
+                    // margin: EdgeInsets.only(left: 60),
+                    width: 250,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        // 'Heliopless , 12 st boutstrab ghlya 4floor Roxy',
+                        // '${widget.doctor.city.name}, ${widget.doctor.city.areas[0].name}',
+                        '${widget.booking.resevationTime}',
+                      ),
+                    ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
                   Text(
                     // 'Heliopless , 12 st boutstrab ghlya 4floor Roxy',
